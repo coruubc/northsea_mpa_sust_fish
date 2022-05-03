@@ -1,279 +1,279 @@
-taxonkey
-600006
-600020
-600024
-600026
-600027
-600028
-600029
-600030
-600031
-600032
-600034
-600045
-600047
-600051
-600054
-600056
-600058
-600059
-600061
-600062
-600063
-600066
-600068
-600069
-600071
-600076
-600077
-600078
-600088
-600090
-600094
-600097
-600101
-600107
-600108
-600115
-600117
-600118
-600138
-600142
-600143
-600146
-600147
-600203
-600216
-600219
-600226
-600230
-600231
-600232
-600233
-600236
-600238
-600240
-600247
-600249
-600252
-600253
-600301
-600309
-600314
-600319
-600331
-600332
-600333
-600334
-600349
-600357
-600391
-600479
-600481
-600501
-600503
-600505
-600509
-600516
-600517
-600519
-600520
-600525
-600526
-600529
-600572
-600637
-600641
-600645
-600646
-600648
-600650
-600653
-600656
-600662
-600663
-600669
-600670
-600687
-600695
-600700
-600704
-600718
-600719
-600736
-600751
-600752
-600754
-600790
-600807
-600845
-600854
-600874
-600880
-600886
-600889
-600890
-600893
-600898
-600917
-601005
-601023
-601042
-601044
-601072
-601077
-601084
-601164
-601279
-601288
-601290
-601319
-601320
-601327
-601334
-601336
-601340
-601341
-601342
-601343
-601348
-601350
-601353
-601356
-601357
-601363
-601365
-601366
-601367
-601370
-601371
-601381
-601382
-601383
-601692
-601696
-601707
-601732
-601734
-601735
-601736
-601752
-601758
-601759
-601874
-602005
-602012
-602058
-602059
-602060
-602065
-602066
-602420
-602497
-602499
-602501
-602503
-602508
-602513
-602530
-602534
-602535
-602589
-602700
-603267
-603542
-603810
-603811
-603971
-603979
-604140
-604239
-604247
-604252
-604326
-604329
-604330
-604538
-604548
-604552
-604556
-604642
-604712
-604791
-604943
-604964
-604996
-604997
-605007
-605008
-605038
-605071
-605081
-605094
-605098
-605355
-605492
-605938
-606422
-607614
-607616
-607618
-607619
-608540
-608991
-609000
-609005
-609256
-648134
-690003
-690029
-690033
-690053
-690058
-690059
-690085
-690087
-690088
-690089
-690090
-690091
-690092
-690119
-690122
-690123
-690124
-690125
-690126
-690156
-690158
-690166
-690185
-690241
-690269
-690270
-690271
-690273
-690274
-690275
-690283
-690309
-690320
-690337
-690343
-690387
-690398
-690399
-690400
-690404
-690420
-690423
-690425
-690595
-690621
-690631
-690671
-690675
-690678
-690680
-690690
-690693
+taxon_key,taxon_name,dem_pel
+600006,Coryphaena hippurus,Pelagic
+600020,Argentina sphyraena,Pelagic
+600024,Clupea harengus,Pelagic
+600026,Glyptocephalus cynoglossus,Demersal
+600027,Lepidorhombus boscii,Demersal
+600028,Lepidorhombus whiffiagonis,Demersal
+600029,Merlangius merlangus,Demersal
+600030,Merluccius merluccius,Demersal
+600031,Micromesistius poutassou,Demersal
+600032,Microchirus variegatus,Demersal
+600034,Pollachius pollachius,Demersal
+600045,Atherina presbyter,Pelagic
+600047,Belone belone,Pelagic
+600051,Brosme brosme,Demersal
+600054,Capros aper,Demersal
+600056,Cepola macrophthalma,Demersal
+600058,Coris julis,Demersal
+600059,Symphodus melops,Demersal
+600061,Ctenolabrus rupestris,Demersal
+600062,Cyclopterus lumpus,Demersal
+600063,Dicentrarchus labrax,Demersal
+600066,Engraulis encrasicolus,Pelagic
+600068,Chelidonichthys gurnardus,Demersal
+600069,Gadus morhua,Demersal
+600071,Caranx hippos,Pelagic
+600076,Helicolenus dactylopterus,Demersal
+600077,Istiophorus platypterus,Pelagic
+600078,Istiophorus albicans,Pelagic
+600088,Lamna nasus,Demersal
+600090,Cetorhinus maximus,Demersal
+600094,Auxis thazard,Pelagic
+600097,Euthynnus alletteratus,Pelagic
+600101,Alosa alosa,Pelagic
+600107,Katsuwonus pelamis,Pelagic
+600108,Orcynopsis unicolor,Pelagic
+600115,Sarda sarda,Pelagic
+600117,Scomber japonicus,Pelagic
+600118,Scomber scombrus,Pelagic
+600138,Somniosus microcephalus,Demersal
+600142,Thunnus alalunga,Pelagic
+600143,Thunnus albacares,Pelagic
+600146,Thunnus obesus,Pelagic
+600147,Thunnus thynnus,Pelagic
+600203,Boops boops,Demersal
+600216,Makaira nigricans,Pelagic
+600219,Tetrapturus albidus,Pelagic
+600226,Xiphias gladius,Pelagic
+600230,Alepocephalus bairdii,Demersal
+600231,Coregonus albula,Pelagic
+600232,Coregonus lavaretus,Demersal
+600233,Coregonus oxyrinchus,Demersal
+600236,Salmo salar,Demersal
+600238,Salmo trutta,Pelagic
+600240,Oncorhynchus gorbuscha,Demersal
+600247,Salvelinus alpinus,Demersal
+600249,Centrolophus niger,Pelagic
+600252,Mallotus villosus,Pelagic
+600253,Osmerus mordax,Pelagic
+600301,Conger conger,Demersal
+600309,Gadus ogac,Demersal
+600314,Eleginus navaga,Demersal
+600319,Boreogadus saida,Demersal
+600331,Macrourus berglax,Demersal
+600332,Coryphaenoides rupestris,Pelagic
+600333,Macroramphosus scolopax,Demersal
+600334,Hoplostethus atlanticus,Pelagic
+600349,Polyprion americanus,Demersal
+600357,Synagrops japonicus,Demersal
+600391,Brama brama,Pelagic
+600479,Zoarces viviparus,Demersal
+600481,Trisopterus minutus,Demersal
+600501,Sebastes marinus,Demersal
+600503,Sebastes flavidus,Demersal
+600505,Sebastes mentella,Pelagic
+600509,Ophiodon elongatus,Demersal
+600516,Reinhardtius hippoglossoides,Demersal
+600517,Atheresthes stomias,Demersal
+600519,Hippoglossoides elassodon,Demersal
+600520,Limanda aspera,Demersal
+600525,Solea solea,Demersal
+600526,Dicologlossa cuneata,Demersal
+600529,Scophthalmus rhombus,Demersal
+600572,Labrus bergylta,Demersal
+600637,Hexanchus griseus,Demersal
+600641,Echinorhinus brucus,Demersal
+600645,Lepidopus caudatus,Demersal
+600646,Aphanopus carbo,Demersal
+600648,Centrophorus granulosus,Demersal
+600650,Centrophorus lusitanicus,Demersal
+600653,Centrophorus squamosus,Demersal
+600656,Centroscyllium fabricii,Demersal
+600662,Centroscymnus coelolepis,Demersal
+600663,Centroscymnus crepidater,Demersal
+600669,Dalatias licha,Demersal
+600670,Deania calcea,Demersal
+600687,Etmopterus spinax,Demersal
+600695,Limanda limanda,Demersal
+600700,Scymnodon ringens,Demersal
+600704,Somniosus rostratus,Demersal
+600718,Oxynotus centrina,Demersal
+600719,Oxynotus paradoxus,Demersal
+600736,Squatina squatina,Demersal
+600751,Carcharodon carcharias,Demersal
+600752,Isurus oxyrinchus,Demersal
+600754,Maurolicus muelleri,Pelagic
+600790,Mullus barbatus,Demersal
+600807,Galeus melastomus,Demersal
+600845,Scyliorhinus canicula,Demersal
+600854,Scyliorhinus stellaris,Demersal
+600874,Carcharhinus limbatus,Demersal
+600880,Carcharhinus plumbeus,Demersal
+600886,Galeocerdo cuvier,Demersal
+600889,Pagellus acarne,Demersal
+600890,Pagellus bogaraveo,Demersal
+600893,Pagellus erythrinus,Demersal
+600898,Prionace glauca,Demersal
+600917,Sphyrna zygaena,Demersal
+601005,Seriola dumerili,Demersal
+601023,Trisopterus esmarkii,Demersal
+601042,Lepidocybium flavobrunneum,Pelagic
+601044,Ruvettus pretiosus,Demersal
+601072,Lampris guttatus,Pelagic
+601077,Lobotes surinamensis,Demersal
+601084,Scomberesox saurus,Pelagic
+601164,Sparus auratus,Demersal
+601279,Trachurus picturatus,Demersal
+601288,Trichiurus lepturus,Demersal
+601290,Ciliata mustela,Demersal
+601319,Beryx decadactylus,Demersal
+601320,Beryx splendens,Demersal
+601327,Mullus surmuletus,Demersal
+601334,Osmerus eperlanus,Pelagic
+601336,Pegusa lascaris,Demersal
+601340,Phycis blennoides,Demersal
+601341,Platichthys flesus,Demersal
+601342,Pleuronectes platessus,Demersal
+601343,Pollachius virens,Demersal
+601348,Scophthalmus maximus,Demersal
+601350,Sardina pilchardus,Pelagic
+601353,Serranus cabrilla,Demersal
+601356,Spondyliosoma cantharus,Demersal
+601357,Sprattus sprattus,Pelagic
+601363,Trachinus draco,Demersal
+601365,Trachurus trachurus,Pelagic
+601366,Chelidonichthys lucerna,Demersal
+601367,Trisopterus luscus,Demersal
+601370,Zeus faber,Demersal
+601371,Hippoglossus hippoglossus,Demersal
+601381,Melanogrammus aeglefinus,Demersal
+601382,Microstomus kitt,Demersal
+601383,Molva dypterygia,Demersal
+601692,Anthias anthias,Demersal
+601696,Atherina boyeri,Demersal
+601707,Sciaena umbra,Demersal
+601732,Mola mola,Pelagic
+601734,Mora moro,Pelagic
+601735,Liza aurata,Pelagic
+601736,Liza saliens,Demersal
+601752,Diplodus annularis,Demersal
+601758,Scorpaena porcus,Demersal
+601759,Scorpaena scrofa,Demersal
+601874,Enchelyopus cimbrius,Demersal
+602005,Antimora rostrata,Pelagic
+602012,Halargyreus johnsonii,Demersal
+602058,Dipturus batis,Demersal
+602059,Raja clavata,Demersal
+602060,Dasyatis pastinaca,Demersal
+602065,Acipenser stellatus,Demersal
+602066,Acipenser sturio,Demersal
+602420,Gasterosteus aculeatus,Demersal
+602497,Diplodus cervinus,Demersal
+602499,Chelon labrosus,Demersal
+602501,Anarhichas lupus,Demersal
+602503,Chimaera monstrosa,Demersal
+602508,Epigonus telescopus,Demersal
+602513,Myxine glutinosa,Demersal
+602530,Petromyzon marinus,Demersal
+602534,Alopias superciliosus,Demersal
+602535,Alopias vulpinus,Demersal
+602589,Hydrolagus colliei,Demersal
+602700,Argentina silus,Demersal
+603267,Regalecus glesne,Pelagic
+603542,Rachycentron canadum,Pelagic
+603810,Anarhichas denticulatus,Demersal
+603811,Anarhichas minor,Demersal
+603971,Sebastes goodei,Demersal
+603979,Sebastes melanops,Demersal
+604140,Scorpaenichthys marmoratus,Demersal
+604239,Hippoglossoides platessoides,Demersal
+604247,Microstomus pacificus,Demersal
+604252,Pleuronichthys decurrens,Demersal
+604326,Leucoraja naevus,Demersal
+604329,Raja montagui,Demersal
+604330,Myliobatis aquila,Demersal
+604538,Dentex maroccanus,Demersal
+604548,Umbrina canariensis,Demersal
+604552,Raja brachyura,Demersal
+604556,Trachyrincus scabrus,Demersal
+604642,Galeorhinus galeus,Demersal
+604712,Acipenser gueldenstaedtii,Demersal
+604791,Mugil soiuy,Demersal
+604943,Citharus linguatula,Demersal
+604964,Hoplostethus mediterraneus mediterraneus,Demersal
+604996,Mustelus mustelus,Demersal
+604997,Nezumia aequalis,Demersal
+605007,Pontinus kuhlii,Demersal
+605008,Promethichthys prometheus,Demersal
+605038,Trigla lyra,Demersal
+605071,Alepocephalus rostratus,Demersal
+605081,Chelidonichthys lastoviza,Demersal
+605094,Lophius budegassa,Demersal
+605098,Borostomias antarcticus,Demersal
+605355,Alosa fallax,Pelagic
+605492,Raja microocellata,Demersal
+605938,Mustelus asterias,Demersal
+606422,Dipturus linteus,Demersal
+607614,Leucoraja circularis,Demersal
+607616,Dipturus oxyrinchus,Demersal
+607618,Mobula mobular,Pelagic
+607619,Leucoraja fullonica,Demersal
+608540,Aphanopus intermedius,Demersal
+608991,Spectrunculus grandis,Demersal
+609000,Hydrolagus mirabilis,Demersal
+609005,Rhinochimaera atlantica,Demersal
+609256,Amblyraja hyperborea,Demersal
+648134,Clupea harengus membras,Pelagic
+690003,Pandalus montagui,Demersal
+690029,Ensis directus,Demersal
+690033,Spisula solidissima,Demersal
+690053,Mytilus edulis,Demersal
+690058,Artemia salina,Demersal
+690059,Illex coindetii,Pelagic
+690085,Sepia officinalis,Pelagic
+690087,Cardium edule,Demersal
+690088,Octopus vulgaris,Demersal
+690089,Littorina littorea,Demersal
+690090,Palaemon serratus,Demersal
+690091,Crangon crangon,Demersal
+690092,Palinurus elephas,Demersal
+690119,Cancer pagurus,Demersal
+690122,Echinus esculentus,Demersal
+690123,Ostrea edulis,Demersal
+690124,Todarodes sagittatus,Pelagic
+690125,Homarus gammarus,Demersal
+690126,Solen vagina,Demersal
+690156,Pecten maximus,Demersal
+690158,Carcinus maenas,Demersal
+690166,Ruditapes decussatus,Demersal
+690185,Chlamys islandica,Demersal
+690241,Mytilus galloprovincialis,Demersal
+690269,Pandalus borealis,Demersal
+690270,Mercenaria mercenaria,Demersal
+690271,Illex illecebrosus,Pelagic
+690273,Nephrops norvegicus,Demersal
+690274,Meganyctiphanes norvegica,Pelagic
+690275,Arctica islandica,Demersal
+690283,Crassostrea gigas,Demersal
+690309,Tapes pullastra,Demersal
+690320,Geryon quinquedens,Demersal
+690337,Mya arenaria,Demersal
+690343,Plesiopenaeus edwardsianus,Demersal
+690387,Maja squinado,Demersal
+690398,Spisula polynyma,Demersal
+690399,Lithodes maia,Demersal
+690400,Paracentrotus lividus,Demersal
+690404,Venus (=Chamelea) gallina,Demersal
+690420,Haliotis tuberculata,Demersal
+690423,Chlamys varia,Demersal
+690425,Necora puber,Demersal
+690595,Loligo forbesii,Pelagic
+690621,Paralithodes camtschaticus,Demersal
+690631,Spisula ovalis,Demersal
+690671,Spisula solida,Demersal
+690675,Tapes rhomboides,Demersal
+690678,Glycymeris glycymeris,Demersal
+690680,Palaemon longirostris,Demersal
+690690,Callista chione,Demersal
+690693,Venus verrucosa,Demersal

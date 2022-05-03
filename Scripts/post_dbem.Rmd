@@ -58,9 +58,9 @@ output <- read_distribution(taxonkey, output = "data", root_path = "/Volumes/DAT
 
 # Detect stock
 if(nrow(output)>0){
-  return(data.frame(taxonkey = taxonkey))
+  return(data.frame(TaxonKey = taxonkey))
   }else{
-    return(data.frame(taxonkey = NA))
+    return(data.frame(TaxonKey = NA))
   }
   
 }
@@ -73,7 +73,9 @@ SppTaxonName <- read.csv("/Volumes/DATA/JULIANO_NEYMAR/EmergingFish/Data/SAU/Spp
 
 # Select species
 spp_list <- bind_rows(lapply(SppTaxonName$TaxonKey, crop_dist)) %>% 
-  filter(!is.na(taxonkey))
+  left_join(SppTaxonName) %>% 
+  filter(!is.na(TaxonKey)) %>% 
+  janitor::clean_names()
 
 write_csv(spp_list,"../Data/nea_spplist.csv")
 
