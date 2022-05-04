@@ -67,7 +67,8 @@ ggplot() +
 #now we need to get the touching grid cells surrounding the 30 and 15 grid. These will be within .75 dec.degrees 
 
 ```
-distance
+
+distance - 30 
 ```{r}
 dist_30 <- st_distance(no_30_sp, grid_30_sp)
 
@@ -110,5 +111,52 @@ ggplot() +
   coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
 
 write.csv(grid_30_final, "grid_30.csv")
+```
+
+
+distance - 15 
+```{r}
+dist_15 <- st_distance(no_15_sp, grid_15_sp)
+
+mins <- rowMins(dist_15, na.rm = T)
+
+
+
+dist_15_n <- as.data.frame(mins)
+dist_15_n$gridID <- no_15$gridID
+
+n <- 1111398*.75 #1 degree is that many meters (approx) - we want anything 
+#this is really big to subset, lets get out smallest distance first 
+
+dist_15_touching <- subset(dist_15_n, dist_15_n$mins < .75)
+dist_15_touching <-left_join(dist_15_touching, no_15, by = "gridID")
+
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_point(data = grid_15, aes(x = coords.x1, y = coords.x2), size = .2, colour = "red") + 
+  geom_point(data = dist_15_touching, aes(x = coords.x1, y = coords.x2), size = .2, colour = "blue") + 
+  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+
+#ookay that seemed to work 
+```
+
+#clean up the dataset 
+```{r}
+dist_15_touching$status <- "surrounding"
+dist_15_touching <- dist_15_touching %>% dplyr::select(-mins)
+grid_15$status <- "protected"
+
+pt_15 <- rbind(dist_15_touching, grid_15)
+
+grid_15_final <- left_join(grid_intersect_27_df, pt_15, by = c("gridID","coords.x1", "coords.x2"))
+
+
+#checkit 
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_point(data = grid_15_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
+  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+
+write.csv(grid_15_final, "grid_15.csv")
 ```
 
