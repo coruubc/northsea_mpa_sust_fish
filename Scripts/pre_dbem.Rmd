@@ -8,6 +8,12 @@ output: html_document
 ```{r}
 library(sf)
 library(spatialEco)
+library(ggplot2)
+library(tidyverse)
+library(geosphere)
+library(raster)
+library(units)
+library(matrixStats)
 ```
 
 
@@ -27,20 +33,82 @@ grid_sp <- st_as_sf(grid, coords = c("long", "lat"), crs = st_crs(fao_27))
 
 sf::sf_use_s2(FALSE)
 grid_intersect_27 <- point.in.poly(grid_sp, fao_27)
-grid_intersect_27 <- 
+
 grid_intersect_27_df <- as.data.frame(grid_intersect_27) 
 
-grid_intersect_27_df <- grid_intersect_27_df[!is.na(grid_intersect_27_df$zone), ]
+grid_intersect_27_df <- grid_intersect_27_df[!is.na(grid_intersect_27_df$zone), ] #just zone 27
+rm(grid, grid_intersect_27, grid_sp)
 
-ggplot() + geom_sf(data = world) + 
-  geom_sf(data = fao_27) + #adding in group = Name makes ggplot know how to group the spatial object
-  geom_point(data = grid_intersect_27_df, aes(x = coords.x1, y = coords.x2, size = .2)) + 
-  coord_sf(xlim=c(-80, -65), ylim=c(34,46), expand = TRUE)+ 
-  theme(panel.background = element_rect(fill = "white", colour = "black"),
-        legend.position="bottom",
-        legend.title=element_blank(),
-        plot.title = element_text(hjust = 0.5)) + 
-  labs(y = element_blank(), x = element_blank()) + 
-  ggtitle("Ecomon Data", subtitle ="1997")+ guides(color = guide_legend(override.aes = list(size = 0.5))) + guides(col = guide_legend(nrow = 2))
+ggplot() + 
+  geom_sf(data = fao_27) + 
+  geom_point(data = grid_intersect_27_df, aes(x = coords.x1, y = coords.x2), size = .2) 
+`%!in%` <- Negate(`%in%`)
+
+grid_30 <- grid_intersect_27_df %>% sample_frac(.3)
+no_30 <- grid_intersect_27_df  %>% dplyr::filter(gridID %!in% c(grid_30$gridID) )
+
+grid_15 <- grid_30 %>% sample_frac(.5)
+no_15 <- grid_intersect_27_df  %>% dplyr::filter(gridID %!in% c(grid_15$gridID) )
+
+grid_30_sp <- st_as_sf(grid_30, coords = c("coords.x1", "coords.x2"), crs = NA)
+no_30_sp <- st_as_sf(no_30, coords = c("coords.x1", "coords.x2"), crs = NA)
+
+grid_15_sp <- st_as_sf(grid_15, coords = c("coords.x1", "coords.x2"), crs = NA)
+no_15_sp <- st_as_sf(no_15, coords = c("coords.x1", "coords.x2"), crs = NA)
+grid_orig <- st_as_sf(grid_intersect_27_df, coords = c("coords.x1", "coords.x2"), crs = NA) #by leaving crs as NA it will calculate distance in decimal degrees
+
+
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_sf(data = grid_30_sp, size = .2, colour = "blue") + 
+  geom_sf(data = grid_15_sp, size = .2, colour = "red") 
+
+
+#now we need to get the touching grid cells surrounding the 30 and 15 grid. These will be within .75 dec.degrees 
 
 ```
+distance
+```{r}
+dist_30 <- st_distance(no_30_sp, grid_30_sp)
+
+mins <- rowMins(dist_30, na.rm = T)
+
+
+
+dist_30_n <- as.data.frame(mins)
+dist_30_n$gridID <- no_30$gridID
+
+n <- 1111398*.75 #1 degree is that many meters (approx) - we want anything 
+#this is really big to subset, lets get out smallest distance first 
+
+dist_30_touching <- subset(dist_30_n, dist_30_n$mins < .75)
+dist_30_touching <-left_join(dist_30_touching, no_30, by = "gridID")
+
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_point(data = grid_30, aes(x = coords.x1, y = coords.x2), size = .2, colour = "red") + 
+  geom_point(data = dist_30_touching, aes(x = coords.x1, y = coords.x2), size = .2, colour = "blue") + 
+  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+
+#ookay that seemed to work 
+```
+#clean up the dataset 
+```{r}
+dist_30_touching$status <- "surrounding"
+dist_30_touching <- dist_30_touching %>% dplyr::select(-mins)
+grid_30$status <- "protected"
+
+pt_30 <- rbind(dist_30_touching, grid_30)
+
+grid_30_final <- left_join(grid_intersect_27_df, pt_30, by = c("gridID","coords.x1", "coords.x2"))
+
+
+#checkit 
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_point(data = grid_30_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
+  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+
+write.csv(grid_30_final, "grid_30.csv")
+```
+
