@@ -158,13 +158,15 @@ write.csv(grid_15_final, "../Data/grid_15.csv")
 ```
 
 #add in MPA data 
+Note - I found these areas in ArcMap - the MPA shapefile was too big to work with in R - so I selected those that intersect FAO 27, dissolved to one shapefile that includes Marine and Coastal, projected to albers equal area, then calculated the area (in meters). Projected the FAO data into albers equal area as well. I can put those in github, but because they are shapefiles they are kind of big.  
+
 coastal mpa area (meters)- 24315764487.799999 + 93245644267.800003
 marine mpa area - 819401638008
 
 FAO area - 14635120094800
 
-so 5.5% of the area is stricly marine protected 
-and 6.4 percent of the area is coastal and marine protected 
+so 5.5% of the area is stricly marine protected 819401638008/14635120094800
+and 6.4 percent of the area is coastal and marine protected 24315764487.799999 + 93245644267.800003 + 819401638008/14635120094800
 
 I'll do them both to have them both - but we can decide what to use. 
 
