@@ -19,8 +19,10 @@ library(matrixStats)
 
 #grid 
 for dbem grid that is overlapping FAO27 
-randomly select 30 points 
+randomly select 30% points 
 from those 30 points figure out which points are surrounding them (within .75 dec.degrees to get the diagonal)
+
+do the same for the 15% (from the selected 30 - take 50%)
 
 ```{r}
 fao_27 <- read_sf("../Data/Zone_27.shp")
@@ -57,11 +59,6 @@ grid_15_sp <- st_as_sf(grid_15, coords = c("coords.x1", "coords.x2"), crs = NA)
 no_15_sp <- st_as_sf(no_15, coords = c("coords.x1", "coords.x2"), crs = NA)
 grid_orig <- st_as_sf(grid_intersect_27_df, coords = c("coords.x1", "coords.x2"), crs = NA) #by leaving crs as NA it will calculate distance in decimal degrees
 
-
-ggplot() + 
-  geom_sf(data = fao_27) +
-  geom_sf(data = grid_30_sp, size = .2, colour = "blue") + 
-  geom_sf(data = grid_15_sp, size = .2, colour = "red") 
 
 
 #now we need to get the touching grid cells surrounding the 30 and 15 grid. These will be within .75 dec.degrees 
@@ -110,7 +107,7 @@ ggplot() +
   geom_point(data = grid_30_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
   coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
 
-write.csv(grid_30_final, "grid_30.csv")
+write.csv(grid_30_final, "../Data/grid_30.csv")
 ```
 
 
@@ -157,6 +154,133 @@ ggplot() +
   geom_point(data = grid_15_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
   coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
 
-write.csv(grid_15_final, "grid_15.csv")
+write.csv(grid_15_final, "../Data/grid_15.csv")
 ```
 
+#add in MPA data 
+coastal mpa area (meters)- 24315764487.799999 + 93245644267.800003
+marine mpa area - 819401638008
+
+FAO area - 14635120094800
+
+so 5.5% of the area is stricly marine protected 
+and 6.4 percent of the area is coastal and marine protected 
+
+I'll do them both to have them both - but we can decide what to use. 
+
+6.4 percent (wich is .2133% of 30 (6.4/30))
+```{r}
+grid_cm <- grid_30 %>% sample_frac(.2133)
+no_cm <- grid_intersect_27_df  %>% dplyr::filter(gridID %!in% c(grid_cm$gridID) )
+
+grid_cm_sp <- st_as_sf(grid_cm, coords = c("coords.x1", "coords.x2"), crs = NA)
+no_cm_sp <- st_as_sf(no_cm, coords = c("coords.x1", "coords.x2"), crs = NA)
+grid_orig <- st_as_sf(grid_intersect_27_df, coords = c("coords.x1", "coords.x2"), crs = NA) #by leaving crs as NA it will calculate distance in decimal degrees
+
+
+
+
+```
+
+distance - 6.4 percent (wich is .2133% of 30 (6.4/30))
+```{r}
+dist_cm <- st_distance(no_cm_sp, grid_cm_sp)
+
+mins <- rowMins(dist_cm, na.rm = T)
+
+
+
+dist_cm_n <- as.data.frame(mins)
+dist_cm_n$gridID <- no_cm$gridID
+
+n <- 1111398*.75 #1 degree is that many meters (approx) - we want anything 
+#this is really big to subset, lets get out smallest distance first 
+
+dist_cm_touching <- subset(dist_cm_n, dist_cm_n$mins < .75)
+dist_cm_touching <-left_join(dist_cm_touching, no_cm, by = "gridID")
+
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_point(data = grid_cm, aes(x = coords.x1, y = coords.x2), size = .2, colour = "red") + 
+  geom_point(data = dist_cm_touching, aes(x = coords.x1, y = coords.x2), size = .2, colour = "blue") + 
+  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+
+#ookay that seemed to work 
+```
+clean up the dataset 
+```{r}
+dist_cm_touching$status <- "surrounding"
+dist_cm_touching <- dist_cm_touching %>% dplyr::select(-mins)
+grid_cm$status <- "protected"
+
+pt_cm <- rbind(dist_cm_touching, grid_cm)
+
+grid_cm_final <- left_join(grid_intersect_27_df, pt_cm, by = c("gridID","coords.x1", "coords.x2"))
+
+
+#checkit 
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_point(data = grid_cm_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
+  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+
+write.csv(grid_cm_final, "../Data/grid_cm6point4.csv")
+```
+
+#5.5 percent (wich is .1833% of 30 (5.5/30))
+```{r}
+grid_m <- grid_30 %>% sample_frac(.1833)
+no_m <- grid_intersect_27_df  %>% dplyr::filter(gridID %!in% c(grid_m$gridID) )
+
+grid_m_sp <- st_as_sf(grid_m, coords = c("coords.x1", "coords.x2"), crs = NA)
+no_m_sp <- st_as_sf(no_m, coords = c("coords.x1", "coords.x2"), crs = NA)
+grid_orig <- st_as_sf(grid_intersect_27_df, coords = c("coords.x1", "coords.x2"), crs = NA) #by leaving crs as NA it will calculate distance in decimal degrees
+
+
+
+```
+
+distance - 6.4 percent (wich is .2133% of 30 (6.4/30))
+```{r}
+dist_m <- st_distance(no_m_sp, grid_m_sp)
+
+mins <- rowMins(dist_m, na.rm = T)
+
+
+
+dist_m_n <- as.data.frame(mins)
+dist_m_n$gridID <- no_m$gridID
+
+n <- 1111398*.75 #1 degree is that many meters (approx) - we want anything 
+#this is really big to subset, lets get out smallest distance first 
+
+dist_m_touching <- subset(dist_m_n, dist_m_n$mins < .75)
+dist_m_touching <-left_join(dist_m_touching, no_m, by = "gridID")
+
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_point(data = grid_m, aes(x = coords.x1, y = coords.x2), size = .2, colour = "red") + 
+  geom_point(data = dist_m_touching, aes(x = coords.x1, y = coords.x2), size = .2, colour = "blue") + 
+  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+
+#ookay that seemed to work 
+```
+clean up the dataset 
+```{r}
+dist_m_touching$status <- "surrounding"
+dist_m_touching <- dist_m_touching %>% dplyr::select(-mins)
+grid_m$status <- "protected"
+
+pt_m <- rbind(dist_m_touching, grid_m)
+
+grid_m_final <- left_join(grid_intersect_27_df, pt_m, by = c("gridID","coords.x1", "coords.x2"))
+
+
+#checkit 
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_point(data = grid_m_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
+  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+
+write.csv(grid_m_final, "../Data/grid_m5point5.csv")
+```
