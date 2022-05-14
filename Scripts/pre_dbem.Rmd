@@ -35,10 +35,10 @@ for dbem grid that is overlapping FAO27 randomly select 30% points from those 30
 do the same for the 15% (from the selected 30 - take 50%)
 
 ```{r}
-fao_27 <- read_sf("../Data/Zone_27.shp")
+fao_27 <- read_sf(here("./Data/spatial/Zone_27.shp"))
 
 
-grid <- read.csv("../Data/Lon_Lat_DBEM.txt", header = FALSE)
+grid <- read.csv(here("./Data/Lon_Lat_DBEM.txt"), header = FALSE)
 colnames(grid) <- c("gridID", "long", "lat")
 grid_sp <- st_as_sf(grid, coords = c("long", "lat"), crs = st_crs(fao_27))
 
@@ -119,7 +119,7 @@ ggplot() +
   geom_point(data = grid_30_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
   coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
 
-write.csv(grid_30_final, "../Data/grid_30.csv")
+write.csv(grid_30_final, here("./Data/mpa_scenarios/grid_30.csv"))
 ```
 
 
@@ -166,7 +166,7 @@ ggplot() +
   geom_point(data = grid_15_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
   coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
 
-write.csv(grid_15_final, "../Data/grid_15.csv")
+write.csv(grid_15_final, here("../Data/mpa_scenarios/grid_15.csv"))
 ```
 
 ## Add in MPA data 
@@ -240,7 +240,7 @@ ggplot() +
   geom_point(data = grid_cm_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
   coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
 
-write.csv(grid_cm_final, "../Data/grid_cm6point4.csv")
+write.csv(grid_cm_final, here("../Data/mpa_scenarios/grid_cm6point4.csv"))
 ```
 
 ### 5.5 percent (wich is .1833% of 30 (5.5/30))
@@ -299,7 +299,7 @@ ggplot() +
   geom_point(data = grid_m_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
   coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
 
-write.csv(grid_m_final, "../Data/grid_m5point5.csv")
+write.csv(grid_m_final, here("../Data/mpa_scenarios/grid_m5point5.csv"))
 ```
 
 
@@ -334,7 +334,7 @@ dbem_coords <- my_path("Spa", "DBEM", name = "complete_lon_lat_dbem.csv", read =
 crop_dist <- function(taxonkey){
   
   
-  # Reads distribution and crops it to dao
+  # Reads distribution and crops it to FAO
 output <- read_distribution(taxonkey, output = "data", root_path = "/Volumes/DATA") %>% 
   bind_cols(dbem_coords) %>% 
   filter(dis >0) %>% 
