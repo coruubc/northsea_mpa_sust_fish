@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r}
-library(sf)
+# For grid estimation and species selection
 library(spatialEco)
 library(ggplot2)
 library(tidyverse)
@@ -14,13 +14,23 @@ library(geosphere)
 library(raster)
 library(units)
 library(matrixStats)
+
+library(sf)
+library(tidyverse)
+
+# Fix new updates of sf package
+sf::sf_use_s2(use_s2 = FALSE)
+
+# For collaborative ease
+library(here)
+
+
 ```
 
 
-#grid 
-for dbem grid that is overlapping FAO27 
-randomly select 30% points 
-from those 30 points figure out which points are surrounding them (within .75 dec.degrees to get the diagonal)
+# MPA grids
+
+for dbem grid that is overlapping FAO27 randomly select 30% points from those 30 points figure out which points are surrounding them (within .75 dec.degrees to get the diagonal)
 
 do the same for the 15% (from the selected 30 - take 50%)
 
@@ -65,7 +75,7 @@ grid_orig <- st_as_sf(grid_intersect_27_df, coords = c("coords.x1", "coords.x2")
 
 ```
 
-distance - 30 
+## Distance - 30 
 ```{r}
 dist_30 <- st_distance(no_30_sp, grid_30_sp)
 
@@ -90,7 +100,9 @@ ggplot() +
 
 #ookay that seemed to work 
 ```
-#clean up the dataset 
+
+#### Clean up the dataset 
+
 ```{r}
 dist_30_touching$status <- "surrounding"
 dist_30_touching <- dist_30_touching %>% dplyr::select(-mins)
@@ -111,7 +123,7 @@ write.csv(grid_30_final, "../Data/grid_30.csv")
 ```
 
 
-distance - 15 
+### Distance - 15 
 ```{r}
 dist_15 <- st_distance(no_15_sp, grid_15_sp)
 
@@ -137,7 +149,7 @@ ggplot() +
 #ookay that seemed to work 
 ```
 
-#clean up the dataset 
+#### Clean up the dataset 
 ```{r}
 dist_15_touching$status <- "surrounding"
 dist_15_touching <- dist_15_touching %>% dplyr::select(-mins)
@@ -157,7 +169,8 @@ ggplot() +
 write.csv(grid_15_final, "../Data/grid_15.csv")
 ```
 
-#add in MPA data 
+## Add in MPA data 
+
 Note - I found these areas in ArcMap - the MPA shapefile was too big to work with in R - so I selected those that intersect FAO 27, dissolved to one shapefile that includes Marine and Coastal, projected to albers equal area, then calculated the area (in meters). Projected the FAO data into albers equal area as well. I can put those in github, but because they are shapefiles they are kind of big.  
 
 coastal mpa area (meters)- 24315764487.799999 + 93245644267.800003
@@ -171,6 +184,7 @@ and 6.4 percent of the area is coastal and marine protected 24315764487.799999 +
 I'll do them both to have them both - but we can decide what to use. 
 
 6.4 percent (wich is .2133% of 30 (6.4/30))
+
 ```{r}
 grid_cm <- grid_30 %>% sample_frac(.2133)
 no_cm <- grid_intersect_27_df  %>% dplyr::filter(gridID %!in% c(grid_cm$gridID) )
@@ -184,7 +198,7 @@ grid_orig <- st_as_sf(grid_intersect_27_df, coords = c("coords.x1", "coords.x2")
 
 ```
 
-distance - 6.4 percent (wich is .2133% of 30 (6.4/30))
+### Distance - 6.4 percent (wich is .2133% of 30 (6.4/30))
 ```{r}
 dist_cm <- st_distance(no_cm_sp, grid_cm_sp)
 
@@ -229,7 +243,7 @@ ggplot() +
 write.csv(grid_cm_final, "../Data/grid_cm6point4.csv")
 ```
 
-#5.5 percent (wich is .1833% of 30 (5.5/30))
+### 5.5 percent (wich is .1833% of 30 (5.5/30))
 ```{r}
 grid_m <- grid_30 %>% sample_frac(.1833)
 no_m <- grid_intersect_27_df  %>% dplyr::filter(gridID %!in% c(grid_m$gridID) )
@@ -242,7 +256,7 @@ grid_orig <- st_as_sf(grid_intersect_27_df, coords = c("coords.x1", "coords.x2")
 
 ```
 
-distance - 6.4 percent (wich is .2133% of 30 (6.4/30))
+### Distance - 6.4 percent (wich is .2133% of 30 (6.4/30))
 ```{r}
 dist_m <- st_distance(no_m_sp, grid_m_sp)
 
@@ -267,7 +281,8 @@ ggplot() +
 
 #ookay that seemed to work 
 ```
-clean up the dataset 
+
+#### Clean up the dataset 
 ```{r}
 dist_m_touching$status <- "surrounding"
 dist_m_touching <- dist_m_touching %>% dplyr::select(-mins)
@@ -286,3 +301,147 @@ ggplot() +
 
 write.csv(grid_m_final, "../Data/grid_m5point5.csv")
 ```
+
+
+# Species selection
+
+Here we will select the species to model based on the FAO region 27
+
+## Get FAO area
+
+```{r}
+
+# read FAO region 27
+# FAO regions
+fao_regions <- my_sf("FAO") %>% 
+  filter(F_LEVEL == "MAJOR",
+         F_CODE == 27)
+st_crs(fao_regions) = 4326
+  
+ggplot(fao_regions) + 
+  geom_sf()
+
+```
+
+## Get Spp distributions
+
+```{r}
+
+# Read DBEM coordinates (full)
+dbem_coords <- my_path("Spa", "DBEM", name = "complete_lon_lat_dbem.csv", read = T, header = T)
+
+# Create function to crop distribution to north sea
+crop_dist <- function(taxonkey){
+  
+  
+  # Reads distribution and crops it to dao
+output <- read_distribution(taxonkey, output = "data", root_path = "/Volumes/DATA") %>% 
+  bind_cols(dbem_coords) %>% 
+  filter(dis >0) %>% 
+  filter(f_code == 27)
+
+# Detect stock
+if(nrow(output)>0){
+  return(data.frame(TaxonKey = taxonkey))
+  }else{
+    return(data.frame(TaxonKey = NA))
+  }
+  
+}
+
+
+# Read spp list
+
+# Read species list
+SppTaxonName <- read.csv("/Volumes/DATA/JULIANO_NEYMAR/EmergingFish/Data/SAU/SppTaxonName.csv")
+
+# Select species
+spp_list <- bind_rows(lapply(SppTaxonName$TaxonKey, crop_dist)) %>% 
+  left_join(SppTaxonName) %>% 
+  filter(!is.na(TaxonKey)) %>% 
+  janitor::clean_names()
+
+write_csv(spp_list,"../Data/nea_spplist.csv")
+
+```
+
+
+# Re-allocation of *f_mort*
+
+When a grid is closed to fishing (i.e., a MPA), the fishing mortality of that grid cell is distributed to the inmmediate surrounding gridcells. This way, the model accounts for the re-distribution of fishing effort that ofetn happens when an MPA is stabished.
+
+
+## Get Data
+
+```{r reallocation_data, eval = T, echo = F}
+
+# Make select function dplyr
+select <- dplyr::select
+
+# MPA test grid
+grid_30 <- read_csv(here("./Data/grid_30.csv"))
+
+mpa_grid <- grid_30 %>% 
+  select(index = gridID,status)
+
+# DBEM lat lon
+coords <- read.csv(here("./Data/Lon_Lat_DBEM.txt"),header = F) %>% 
+  select(index = V1,
+         lon = V2,
+         lat = V3)
+
+
+```
+
+## Design method
+
+```{r}
+# test
+coords %>% 
+  mutate(fmort = runif(259200,0,1)) %>%  # Simulate DBEM's fmort
+  # Re estimate effort
+  left_join(mpa_grid,
+            by = "index") %>% 
+  mutate(
+    status = ifelse(is.na(status),"open",status),
+    prop = ifelse(status == "protected",0,
+                  ifelse(status == "surrounding",runif(3,1,2),
+                         1)
+                  ),
+    fmort_prop = fmort * prop
+    ) %>% 
+  filter(status == "surrounding") %>% 
+  View()
+
+# Ok
+
+```
+
+Sounds like the way we can do it is to proportionally divide the protected cell into the surrounding ones. This way, $if status = protected, prop == 0$, consequently, if there are 4 cells surrounding the protected one, then $prop =1.25$, if there are 2 surrounding cells then $prop =1.5$, if there are 10 surrounding cells then $prop =1.1$, and so on... Finally, if $status = no protection$ then $prop = 1$.
+
+With that information we can then re-estimate fishing mortality ($f_{mort}$) (i.e., re-allocate fishing effort) in the surrounding cells as
+
+$$\hat{f}_{mort} = f_{mort} * prop$$
+where $\hat{f}_{mort}$ is the fishing mortality considering the re-allocation fo fishing effort due to the closure if fishing within the protected grid cell. This means that, in a surrounding cell where, lets say $f_{mort}$ = 0.2 and prop = 1.25, the actual fishing mortality (i.e., $\hat{f}_{mort}$) is actually 0.25 ($\hat{f}_{mort} = 0.25$). Subsequently, in cases where $prop = 0$ (i.e., protected grid cells) and $f_{mort}$ > 0, $\hat{f}_{mort}$ = 0. Finally, if the cell is not protected nor surrounding a protected grid cell then  $\hat{f}_{mort} = f_{mort}$, that is, fishing mortality will be the one estimated by the DBEM assuming no effects from the MPA
+
+With this in mind, we need a (new) `grid_mpa` dataset that looks something like the one below so we can input that to the DBEM
+
+```{r grid_map_new}
+# Final table
+# I think this is how it might work out
+
+ mpa_grid %>% 
+  full_join(coords) %>% 
+  mutate(
+    status = ifelse(is.na(status),"open",status),
+    # Randomly simulate proportions for exemplification
+    prop = ifelse(status == "protected",0,
+                  ifelse(status == "surrounding",runif(3,1,2),
+                         1)
+                  )
+    ) %>%
+  arrange(index) %>% 
+  select(prop)
+
+```
+
