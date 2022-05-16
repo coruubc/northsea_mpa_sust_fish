@@ -396,7 +396,7 @@ select <- dplyr::select
 grid_30 <- read_csv(here("./Data/mpa_scenarios/grid_30.csv"))
 
 mpa_grid <- grid_30 %>% 
-  select(index = gridID,status)
+  select(index = gridID,status,prop)
 
 # DBEM lat lon
 coords <- read.csv(here("./Data/Lon_Lat_DBEM.txt"),header = F) %>% 
@@ -456,6 +456,43 @@ With this in mind, we need a (new) `grid_mpa` dataset that looks something like 
     ) %>%
   arrange(index) %>% 
   select(prop)
+
+```
+
+## Prepare grid data for DBEM
+
+```{r}
+
+coords <- read.csv(here("./Data/Lon_Lat_DBEM.txt"),header = F) %>% 
+  select(gridID = V1,
+         lon = V2,
+         lat = V3)
+
+
+# Start run with 30%
+grid_to_dbem <- function(data, protection){
+
+  read_grid <- paste0(here(),"/Data/mpa_scenarios/grid_",protection,".csv")
+  
+ df <-  coords %>% 
+    left_join(
+      read_csv(here(read_grid)),
+               by = "gridID") %>% 
+    mutate(prop= replace_na(prop,1)) %>% 
+    select(prop)
+
+colnames(df) <- NULL
+
+
+name <- paste0(here("Data/mpa_scenarios/mpa_"),protection,".txt")
+write.table(df, file=name, sep="\t", col.names = F, row.names = F)
+
+}
+
+
+# Produce grids
+grid_to_dbem(data = mpa_grid,"15")
+
 
 ```
 
