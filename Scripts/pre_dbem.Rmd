@@ -36,7 +36,7 @@ do the same for the 15% (from the selected 30 - take 50%)
 
 ```{r}
 fao_27 <- read_sf(here("./Data/spatial/Zone_27.shp"))
-
+set.seed(123)
 
 grid <- read.csv(here("./Data/Lon_Lat_DBEM.txt"), header = FALSE)
 colnames(grid) <- c("gridID", "long", "lat")
@@ -118,8 +118,12 @@ grid_30_final <- left_join(grid_intersect_27_df, pt_30, by = c("gridID","coords.
 #checkit 
 ggplot() + 
   geom_sf(data = fao_27) +
-  geom_point(data = grid_30_final, aes(x = coords.x1, y = coords.x2, colour = status), size = .2)  + 
-  coord_sf(xlim=c(-35, -30), ylim=c(40,45), expand = TRUE)
+  geom_tile(data = grid_30_final, aes(x = coords.x1, y = coords.x2, fill = status), size = .2, colour = "black")  + 
+  coord_sf(xlim=c(-35, -20), ylim=c(40,55), expand = TRUE)
+
+ggplot() + 
+  geom_sf(data = fao_27) +
+  geom_tile(data = grid_30_final, aes(x = coords.x1, y = coords.x2, fill = status), size = .2) 
 
 write.csv(grid_30_final, here("./Data/mpa_scenarios/grid_30.csv"))
 ```
