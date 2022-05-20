@@ -327,7 +327,7 @@ Here we will select the species to model based on the FAO region 27
 
 # read FAO region 27
 # FAO regions
-fao_regions <- my_sf("FAO") %>% 
+fao_regions <- MyFunctions::my_sf("FAO") %>% 
   filter(F_LEVEL == "MAJOR",
          F_CODE == 27)
 st_crs(fao_regions) = 4326
@@ -341,43 +341,71 @@ ggplot(fao_regions) +
 
 ```{r}
 
-# Read DBEM coordinates (full)
-dbem_coords <- my_path("Spa", "DBEM", name = "complete_lon_lat_dbem.csv", read = T, header = T)
+# Read in SAU data of after 2006
+sau_catch <- read.csv("/Volumes/Enterprise/Data/SAU/SAUCatch_FE_EEZ_FAO_taxa_sector_29May2020.csv") %>% 
+  filter(fao_area_id == 27,
+         year >= 2006) %>% 
+  pull(taxon_key) %>% 
+  unique()
 
-# Create function to crop distribution to north sea
-crop_dist <- function(taxonkey){
-  
-  
-  # Reads distribution and crops it to FAO
-output <- read_distribution(taxonkey, output = "data", root_path = "/Volumes/DATA") %>% 
-  bind_cols(dbem_coords) %>% 
-  filter(dis >0) %>% 
-  filter(f_code == 27)
-
-# Detect stock
-if(nrow(output)>0){
-  return(data.frame(TaxonKey = taxonkey))
-  }else{
-    return(data.frame(TaxonKey = NA))
-  }
-  
-}
-
-
-# Read spp list
+# Get current distributions
+dbem_spp <- list.files("/Volumes/Enterprise/Data/Species/Distributions")
+dbem_spp <- str_remove(dbem_spp,".csv")
+dbem_spp <- str_remove(dbem_spp,"S")
 
 # Read species list
-SppTaxonName <- read.csv("/Volumes/DATA/JULIANO_NEYMAR/EmergingFish/Data/SAU/SppTaxonName.csv")
+spp_list <- read.csv("/Volumes/Enterprise/Data/SAU/exploited_species_list.csv") %>% 
+  janitor::clean_names() %>% 
+  filter(taxon_key %in% sau_catch,
+         taxon_key %in% dbem_spp)
 
-# Select species
-spp_list <- bind_rows(lapply(SppTaxonName$TaxonKey, crop_dist)) %>% 
-  left_join(SppTaxonName) %>% 
-  filter(!is.na(TaxonKey)) %>% 
-  janitor::clean_names()
 
-write_csv(spp_list,"../Data/nea_spplist.csv")
+# Save complete list
+write_csv(spp_list,"../Data/species/nea_spplist.csv")
+
+
+# Create files for DBEM
+
+# Split spp list by 40
+nrow(spp_list)
+nrow(spp_list)/40
+40*8
+320-nrow(spp_list)
+
+# repeat 18 species
+spp_list_dummy <- spp_list %>% 
+  slice(1:18) %>% 
+  mutate(taxon_key == 600004) %>% # peruveean anchovie is a fast computing spp
+  bind_rows(spp_list)
+
+# Double check it worked
+nrow(spp_list_dummy)
+nrow(spp_list_dummy)/40
+
+# Split list into 8 groups
+for(s in 1:8){
+  
+if(s == 1){
+  i = 1
+  j = 40
+}else{
+  i = j + 1
+  j = j + 40
+}
+
+df <- spp_list %>% 
+  slice(i:j) %>% 
+  select(taxon_key)
+
+ name <- paste0(here(),"/Data/species/NsSppList",s+10,".txt")
+ write.table(df, file=name, sep="\t", col.names = F, row.names = F)
+
+}
+  
+
 
 ```
+
 
 
 # Re-allocation of *f_mort*
