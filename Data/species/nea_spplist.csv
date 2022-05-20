@@ -1,279 +1,303 @@
-taxon_key,taxon_name,dem_pel
-600006,Coryphaena hippurus,Pelagic
-600020,Argentina sphyraena,Pelagic
-600024,Clupea harengus,Pelagic
-600026,Glyptocephalus cynoglossus,Demersal
-600027,Lepidorhombus boscii,Demersal
-600028,Lepidorhombus whiffiagonis,Demersal
-600029,Merlangius merlangus,Demersal
-600030,Merluccius merluccius,Demersal
-600031,Micromesistius poutassou,Demersal
-600032,Microchirus variegatus,Demersal
-600034,Pollachius pollachius,Demersal
-600045,Atherina presbyter,Pelagic
-600047,Belone belone,Pelagic
-600051,Brosme brosme,Demersal
-600054,Capros aper,Demersal
-600056,Cepola macrophthalma,Demersal
-600058,Coris julis,Demersal
-600059,Symphodus melops,Demersal
-600061,Ctenolabrus rupestris,Demersal
-600062,Cyclopterus lumpus,Demersal
-600063,Dicentrarchus labrax,Demersal
-600066,Engraulis encrasicolus,Pelagic
-600068,Chelidonichthys gurnardus,Demersal
-600069,Gadus morhua,Demersal
-600071,Caranx hippos,Pelagic
-600076,Helicolenus dactylopterus,Demersal
-600077,Istiophorus platypterus,Pelagic
-600078,Istiophorus albicans,Pelagic
-600088,Lamna nasus,Demersal
-600090,Cetorhinus maximus,Demersal
-600094,Auxis thazard,Pelagic
-600097,Euthynnus alletteratus,Pelagic
-600101,Alosa alosa,Pelagic
-600107,Katsuwonus pelamis,Pelagic
-600108,Orcynopsis unicolor,Pelagic
-600115,Sarda sarda,Pelagic
-600117,Scomber japonicus,Pelagic
-600118,Scomber scombrus,Pelagic
-600138,Somniosus microcephalus,Demersal
-600142,Thunnus alalunga,Pelagic
-600143,Thunnus albacares,Pelagic
-600146,Thunnus obesus,Pelagic
-600147,Thunnus thynnus,Pelagic
-600203,Boops boops,Demersal
-600216,Makaira nigricans,Pelagic
-600219,Tetrapturus albidus,Pelagic
-600226,Xiphias gladius,Pelagic
-600230,Alepocephalus bairdii,Demersal
-600231,Coregonus albula,Pelagic
-600232,Coregonus lavaretus,Demersal
-600233,Coregonus oxyrinchus,Demersal
-600236,Salmo salar,Demersal
-600238,Salmo trutta,Pelagic
-600240,Oncorhynchus gorbuscha,Demersal
-600247,Salvelinus alpinus,Demersal
-600249,Centrolophus niger,Pelagic
-600252,Mallotus villosus,Pelagic
-600253,Osmerus mordax,Pelagic
-600301,Conger conger,Demersal
-600309,Gadus ogac,Demersal
-600314,Eleginus navaga,Demersal
-600319,Boreogadus saida,Demersal
-600331,Macrourus berglax,Demersal
-600332,Coryphaenoides rupestris,Pelagic
-600333,Macroramphosus scolopax,Demersal
-600334,Hoplostethus atlanticus,Pelagic
-600349,Polyprion americanus,Demersal
-600357,Synagrops japonicus,Demersal
-600391,Brama brama,Pelagic
-600479,Zoarces viviparus,Demersal
-600481,Trisopterus minutus,Demersal
-600501,Sebastes marinus,Demersal
-600503,Sebastes flavidus,Demersal
-600505,Sebastes mentella,Pelagic
-600509,Ophiodon elongatus,Demersal
-600516,Reinhardtius hippoglossoides,Demersal
-600517,Atheresthes stomias,Demersal
-600519,Hippoglossoides elassodon,Demersal
-600520,Limanda aspera,Demersal
-600525,Solea solea,Demersal
-600526,Dicologlossa cuneata,Demersal
-600529,Scophthalmus rhombus,Demersal
-600572,Labrus bergylta,Demersal
-600637,Hexanchus griseus,Demersal
-600641,Echinorhinus brucus,Demersal
-600645,Lepidopus caudatus,Demersal
-600646,Aphanopus carbo,Demersal
-600648,Centrophorus granulosus,Demersal
-600650,Centrophorus lusitanicus,Demersal
-600653,Centrophorus squamosus,Demersal
-600656,Centroscyllium fabricii,Demersal
-600662,Centroscymnus coelolepis,Demersal
-600663,Centroscymnus crepidater,Demersal
-600669,Dalatias licha,Demersal
-600670,Deania calcea,Demersal
-600687,Etmopterus spinax,Demersal
-600695,Limanda limanda,Demersal
-600700,Scymnodon ringens,Demersal
-600704,Somniosus rostratus,Demersal
-600718,Oxynotus centrina,Demersal
-600719,Oxynotus paradoxus,Demersal
-600736,Squatina squatina,Demersal
-600751,Carcharodon carcharias,Demersal
-600752,Isurus oxyrinchus,Demersal
-600754,Maurolicus muelleri,Pelagic
-600790,Mullus barbatus,Demersal
-600807,Galeus melastomus,Demersal
-600845,Scyliorhinus canicula,Demersal
-600854,Scyliorhinus stellaris,Demersal
-600874,Carcharhinus limbatus,Demersal
-600880,Carcharhinus plumbeus,Demersal
-600886,Galeocerdo cuvier,Demersal
-600889,Pagellus acarne,Demersal
-600890,Pagellus bogaraveo,Demersal
-600893,Pagellus erythrinus,Demersal
-600898,Prionace glauca,Demersal
-600917,Sphyrna zygaena,Demersal
-601005,Seriola dumerili,Demersal
-601023,Trisopterus esmarkii,Demersal
-601042,Lepidocybium flavobrunneum,Pelagic
-601044,Ruvettus pretiosus,Demersal
-601072,Lampris guttatus,Pelagic
-601077,Lobotes surinamensis,Demersal
-601084,Scomberesox saurus,Pelagic
-601164,Sparus auratus,Demersal
-601279,Trachurus picturatus,Demersal
-601288,Trichiurus lepturus,Demersal
-601290,Ciliata mustela,Demersal
-601319,Beryx decadactylus,Demersal
-601320,Beryx splendens,Demersal
-601327,Mullus surmuletus,Demersal
-601334,Osmerus eperlanus,Pelagic
-601336,Pegusa lascaris,Demersal
-601340,Phycis blennoides,Demersal
-601341,Platichthys flesus,Demersal
-601342,Pleuronectes platessus,Demersal
-601343,Pollachius virens,Demersal
-601348,Scophthalmus maximus,Demersal
-601350,Sardina pilchardus,Pelagic
-601353,Serranus cabrilla,Demersal
-601356,Spondyliosoma cantharus,Demersal
-601357,Sprattus sprattus,Pelagic
-601363,Trachinus draco,Demersal
-601365,Trachurus trachurus,Pelagic
-601366,Chelidonichthys lucerna,Demersal
-601367,Trisopterus luscus,Demersal
-601370,Zeus faber,Demersal
-601371,Hippoglossus hippoglossus,Demersal
-601381,Melanogrammus aeglefinus,Demersal
-601382,Microstomus kitt,Demersal
-601383,Molva dypterygia,Demersal
-601692,Anthias anthias,Demersal
-601696,Atherina boyeri,Demersal
-601707,Sciaena umbra,Demersal
-601732,Mola mola,Pelagic
-601734,Mora moro,Pelagic
-601735,Liza aurata,Pelagic
-601736,Liza saliens,Demersal
-601752,Diplodus annularis,Demersal
-601758,Scorpaena porcus,Demersal
-601759,Scorpaena scrofa,Demersal
-601874,Enchelyopus cimbrius,Demersal
-602005,Antimora rostrata,Pelagic
-602012,Halargyreus johnsonii,Demersal
-602058,Dipturus batis,Demersal
-602059,Raja clavata,Demersal
-602060,Dasyatis pastinaca,Demersal
-602065,Acipenser stellatus,Demersal
-602066,Acipenser sturio,Demersal
-602420,Gasterosteus aculeatus,Demersal
-602497,Diplodus cervinus,Demersal
-602499,Chelon labrosus,Demersal
-602501,Anarhichas lupus,Demersal
-602503,Chimaera monstrosa,Demersal
-602508,Epigonus telescopus,Demersal
-602513,Myxine glutinosa,Demersal
-602530,Petromyzon marinus,Demersal
-602534,Alopias superciliosus,Demersal
-602535,Alopias vulpinus,Demersal
-602589,Hydrolagus colliei,Demersal
-602700,Argentina silus,Demersal
-603267,Regalecus glesne,Pelagic
-603542,Rachycentron canadum,Pelagic
-603810,Anarhichas denticulatus,Demersal
-603811,Anarhichas minor,Demersal
-603971,Sebastes goodei,Demersal
-603979,Sebastes melanops,Demersal
-604140,Scorpaenichthys marmoratus,Demersal
-604239,Hippoglossoides platessoides,Demersal
-604247,Microstomus pacificus,Demersal
-604252,Pleuronichthys decurrens,Demersal
-604326,Leucoraja naevus,Demersal
-604329,Raja montagui,Demersal
-604330,Myliobatis aquila,Demersal
-604538,Dentex maroccanus,Demersal
-604548,Umbrina canariensis,Demersal
-604552,Raja brachyura,Demersal
-604556,Trachyrincus scabrus,Demersal
-604642,Galeorhinus galeus,Demersal
-604712,Acipenser gueldenstaedtii,Demersal
-604791,Mugil soiuy,Demersal
-604943,Citharus linguatula,Demersal
-604964,Hoplostethus mediterraneus mediterraneus,Demersal
-604996,Mustelus mustelus,Demersal
-604997,Nezumia aequalis,Demersal
-605007,Pontinus kuhlii,Demersal
-605008,Promethichthys prometheus,Demersal
-605038,Trigla lyra,Demersal
-605071,Alepocephalus rostratus,Demersal
-605081,Chelidonichthys lastoviza,Demersal
-605094,Lophius budegassa,Demersal
-605098,Borostomias antarcticus,Demersal
-605355,Alosa fallax,Pelagic
-605492,Raja microocellata,Demersal
-605938,Mustelus asterias,Demersal
-606422,Dipturus linteus,Demersal
-607614,Leucoraja circularis,Demersal
-607616,Dipturus oxyrinchus,Demersal
-607618,Mobula mobular,Pelagic
-607619,Leucoraja fullonica,Demersal
-608540,Aphanopus intermedius,Demersal
-608991,Spectrunculus grandis,Demersal
-609000,Hydrolagus mirabilis,Demersal
-609005,Rhinochimaera atlantica,Demersal
-609256,Amblyraja hyperborea,Demersal
-648134,Clupea harengus membras,Pelagic
-690003,Pandalus montagui,Demersal
-690029,Ensis directus,Demersal
-690033,Spisula solidissima,Demersal
-690053,Mytilus edulis,Demersal
-690058,Artemia salina,Demersal
-690059,Illex coindetii,Pelagic
-690085,Sepia officinalis,Pelagic
-690087,Cardium edule,Demersal
-690088,Octopus vulgaris,Demersal
-690089,Littorina littorea,Demersal
-690090,Palaemon serratus,Demersal
-690091,Crangon crangon,Demersal
-690092,Palinurus elephas,Demersal
-690119,Cancer pagurus,Demersal
-690122,Echinus esculentus,Demersal
-690123,Ostrea edulis,Demersal
-690124,Todarodes sagittatus,Pelagic
-690125,Homarus gammarus,Demersal
-690126,Solen vagina,Demersal
-690156,Pecten maximus,Demersal
-690158,Carcinus maenas,Demersal
-690166,Ruditapes decussatus,Demersal
-690185,Chlamys islandica,Demersal
-690241,Mytilus galloprovincialis,Demersal
-690269,Pandalus borealis,Demersal
-690270,Mercenaria mercenaria,Demersal
-690271,Illex illecebrosus,Pelagic
-690273,Nephrops norvegicus,Demersal
-690274,Meganyctiphanes norvegica,Pelagic
-690275,Arctica islandica,Demersal
-690283,Crassostrea gigas,Demersal
-690309,Tapes pullastra,Demersal
-690320,Geryon quinquedens,Demersal
-690337,Mya arenaria,Demersal
-690343,Plesiopenaeus edwardsianus,Demersal
-690387,Maja squinado,Demersal
-690398,Spisula polynyma,Demersal
-690399,Lithodes maia,Demersal
-690400,Paracentrotus lividus,Demersal
-690404,Venus (=Chamelea) gallina,Demersal
-690420,Haliotis tuberculata,Demersal
-690423,Chlamys varia,Demersal
-690425,Necora puber,Demersal
-690595,Loligo forbesii,Pelagic
-690621,Paralithodes camtschaticus,Demersal
-690631,Spisula ovalis,Demersal
-690671,Spisula solida,Demersal
-690675,Tapes rhomboides,Demersal
-690678,Glycymeris glycymeris,Demersal
-690680,Palaemon longirostris,Demersal
-690690,Callista chione,Demersal
-690693,Venus verrucosa,Demersal
+taxon_key,taxon_name,common_name,genus,species
+600006,Coryphaena hippurus,Common dolphinfish,Coryphaena,hippurus
+600020,Argentina sphyraena,European argentine,Argentina,sphyraena
+600024,Clupea harengus,Atlantic herring,Clupea,harengus
+600026,Glyptocephalus cynoglossus,Witch flounder,Glyptocephalus,cynoglossus
+600027,Lepidorhombus boscii,Fourspot megrim,Lepidorhombus,boscii
+600028,Lepidorhombus whiffiagonis,Megrim,Lepidorhombus,whiffiagonis
+600029,Merlangius merlangus,Whiting,Merlangius,merlangus
+600030,Merluccius merluccius,European hake,Merluccius,merluccius
+600031,Micromesistius poutassou,Blue whiting,Micromesistius,poutassou
+600032,Microchirus variegatus,Thickback sole,Microchirus,variegatus
+600033,Molva molva,Ling,Molva,molva
+600034,Pollachius pollachius,Pollack,Pollachius,pollachius
+600045,Atherina presbyter,Sand smelt,Atherina,presbyter
+600047,Belone belone,Garfish,Belone,belone
+600051,Brosme brosme,Tusk,Brosme,brosme
+600054,Capros aper,Boarfish,Capros,aper
+600056,Cepola macrophthalma,Red bandfish,Cepola,macrophthalma
+600058,Coris julis,Mediterranean rainbow wrasse,Coris,julis
+600059,Symphodus melops,Corkwing wrasse,Symphodus,melops
+600061,Ctenolabrus rupestris,Goldsinny wrasse,Ctenolabrus,rupestris
+600062,Cyclopterus lumpus,Lumpfish,Cyclopterus,lumpus
+600063,Dicentrarchus labrax,European seabass,Dicentrarchus,labrax
+600066,Engraulis encrasicolus,European anchovy,Engraulis,encrasicolus
+600068,Eutrigla gurnardus,Grey gurnard,Eutrigla,gurnardus
+600069,Gadus morhua,Atlantic cod,Gadus,morhua
+600071,Caranx hippos,Crevalle jack,Caranx,hippos
+600076,Helicolenus dactylopterus,Blackbelly rosefish,Helicolenus,dactylopterus
+600078,Istiophorus albicans,Atlantic sailfish,Istiophorus,albicans
+600088,Lamna nasus,Porbeagle,Lamna,nasus
+600090,Cetorhinus maximus,Basking shark,Cetorhinus,maximus
+600093,Auxis rochei,Bullet tuna,Auxis,rochei
+600094,Auxis thazard,Frigate tuna,Auxis,thazard
+600097,Euthynnus alletteratus,Little tunny,Euthynnus,alletteratus
+600101,Alosa alosa,Allis shad,Alosa,alosa
+600107,Katsuwonus pelamis,Skipjack tuna,Katsuwonus,pelamis
+600108,Orcynopsis unicolor,Plain bonito,Orcynopsis,unicolor
+600115,Sarda sarda,Atlantic bonito,Sarda,sarda
+600118,Scomber scombrus,Atlantic mackerel,Scomber,scombrus
+600138,Somniosus microcephalus,Greenland shark,Somniosus,microcephalus
+600139,Squalus acanthias,Piked dogfish,Squalus,acanthias
+600142,Thunnus alalunga,Albacore,Thunnus,alalunga
+600143,Thunnus albacares,Yellowfin tuna,Thunnus,albacares
+600146,Thunnus obesus,Bigeye tuna,Thunnus,obesus
+600147,Thunnus thynnus,Atlantic bluefin tuna,Thunnus,thynnus
+600203,Boops boops,Bogue,Boops,boops
+600204,Sarpa salpa,Salema,Sarpa,salpa
+600216,Makaira nigricans,Blue marlin,Makaira,nigricans
+600219,Kajikia albida,Atlantic white marlin,Kajikia,albida
+600220,Tetrapturus pfluegeri,Longbill spearfish,Tetrapturus,pfluegeri
+600226,Xiphias gladius,Swordfish,Xiphias,gladius
+600230,Alepocephalus bairdii,Bairds slickhead,Alepocephalus,bairdii
+600231,Coregonus albula,Vendace,Coregonus,albula
+600236,Salmo salar,Atlantic salmon,Salmo,salar
+600238,Salmo trutta,Sea trout,Salmo,trutta
+600247,Salvelinus alpinus alpinus,Arctic char,Salvelinus,alpinus alpinus
+600249,Centrolophus niger,Rudderfish,Centrolophus,niger
+600250,Schedophilus ovalis,Imperial blackfish,Schedophilus,ovalis
+600252,Mallotus villosus,Capelin,Mallotus,villosus
+600301,Conger conger,European conger,Conger,conger
+600313,Urophycis tenuis,White hake,Urophycis,tenuis
+600314,Eleginus nawaga,Navaga,Eleginus,nawaga
+600319,Boreogadus saida,Polar cod,Boreogadus,saida
+600331,Macrourus berglax,Roughhead grenadier,Macrourus,berglax
+600332,Coryphaenoides rupestris,Roundnose grenadier,Coryphaenoides,rupestris
+600333,Macroramphosus scolopax,Longspine snipefish,Macroramphosus,scolopax
+600334,Hoplostethus atlanticus,Orange roughy,Hoplostethus,atlanticus
+600336,Zenopsis conchifer,Silvery John dory,Zenopsis,conchifer
+600349,Polyprion americanus,Wreckfish,Polyprion,americanus
+600364,Pomatomus saltatrix,Bluefish,Pomatomus,saltatrix
+600391,Brama brama,Atlantic pomfret,Brama,brama
+600394,Dicentrarchus punctatus,Spotted seabass,Dicentrarchus,punctatus
+600398,Plectorhinchus mediterraneus,Rubberlip grunt,Plectorhinchus,mediterraneus
+600418,Argyrosomus regius,Meagre,Argyrosomus,regius
+600426,Epinephelus aeneus,White grouper,Epinephelus,aeneus
+600438,Dentex macrophthalmus,Largeeye dentex,Dentex,macrophthalmus
+600439,Dentex dentex,Common dentex,Dentex,dentex
+600479,Zoarces viviparus,Eelpout,Zoarces,viviparus
+600481,Trisopterus minutus,Poor cod,Trisopterus,minutus
+600501,Sebastes norvegicus,Golden redfish,Sebastes,norvegicus
+600505,Sebastes mentella,Beaked redfish,Sebastes,mentella
+600516,Reinhardtius hippoglossoides,Greenland halibut,Reinhardtius,hippoglossoides
+600525,Solea solea,Common sole,Solea,solea
+600526,Dicologlossa cuneata,Wedge sole,Dicologlossa,cuneata
+600529,Scophthalmus rhombus,Brill,Scophthalmus,rhombus
+600572,Labrus bergylta,Ballan wrasse,Labrus,bergylta
+600636,Heptranchias perlo,Sharpnose sevengill shark,Heptranchias,perlo
+600637,Hexanchus griseus,Bluntnose sixgill shark,Hexanchus,griseus
+600641,Echinorhinus brucus,Bramble shark,Echinorhinus,brucus
+600645,Lepidopus caudatus,Silver scabbardfish,Lepidopus,caudatus
+600646,Aphanopus carbo,Black scabbardfish,Aphanopus,carbo
+600648,Centrophorus granulosus,Gulper shark,Centrophorus,granulosus
+600650,Centrophorus lusitanicus,Lowfin gulper shark,Centrophorus,lusitanicus
+600653,Centrophorus squamosus,Leafscale gulper shark,Centrophorus,squamosus
+600656,Centroscyllium fabricii,Black dogfish,Centroscyllium,fabricii
+600662,Centroscymnus coelolepis,Portuguese dogfish,Centroscymnus,coelolepis
+600663,Centroscymnus crepidater,Longnose velvet dogfish,Centroscymnus,crepidater
+600669,Dalatias licha,Kitefin shark,Dalatias,licha
+600670,Deania calcea,Birdbeak dogfish,Deania,calcea
+600687,Etmopterus spinax,Velvet belly,Etmopterus,spinax
+600692,Lichia amia,Leerfish,Lichia,amia
+600695,Limanda limanda,Common dab,Limanda,limanda
+600700,Scymnodon ringens,Knifetooth dogfish,Scymnodon,ringens
+600706,Lithognathus mormyrus,Sand steenbras,Lithognathus,mormyrus
+600716,Lophius piscatorius,Angler,Lophius,piscatorius
+600718,Oxynotus centrina,Angular roughshark,Oxynotus,centrina
+600719,Oxynotus paradoxus,Sailfin roughshark,Oxynotus,paradoxus
+600736,Squatina squatina,Angelshark,Squatina,squatina
+600752,Isurus oxyrinchus,Shortfin mako,Isurus,oxyrinchus
+600754,Maurolicus muelleri,Silvery lightfish,Maurolicus,muelleri
+600785,Mugil cephalus,Flathead grey mullet,Mugil,cephalus
+600790,Mullus barbatus barbatus,Red mullet,Mullus,barbatus barbatus
+600807,Galeus melastomus,Blackmouth catshark,Galeus,melastomus
+600845,Scyliorhinus canicula,Smallspotted catshark,Scyliorhinus,canicula
+600850,Oblada melanura,Saddled seabream,Oblada,melanura
+600854,Scyliorhinus stellaris,Nursehound,Scyliorhinus,stellaris
+600864,Carcharhinus brachyurus,Copper shark,Carcharhinus,brachyurus
+600875,Carcharhinus longimanus,Oceanic whitetip shark,Carcharhinus,longimanus
+600886,Galeocerdo cuvier,Tiger shark,Galeocerdo,cuvier
+600889,Pagellus acarne,Axillary seabream,Pagellus,acarne
+600890,Pagellus bogaraveo,Blackspot seabream,Pagellus,bogaraveo
+600893,Pagellus erythrinus,Common pandora,Pagellus,erythrinus
+600898,Prionace glauca,Blue shark,Prionace,glauca
+600917,Sphyrna zygaena,Smooth hammerhead,Sphyrna,zygaena
+601002,Pseudocaranx dentex,White trevally,Pseudocaranx,dentex
+601005,Seriola dumerili,Greater amberjack,Seriola,dumerili
+601023,Trisopterus esmarkii,Norway pout,Trisopterus,esmarkii
+601042,Lepidocybium flavobrunneum,Escolar,Lepidocybium,flavobrunneum
+601043,Sardinella aurita,Round sardinella,Sardinella,aurita
+601044,Ruvettus pretiosus,Oilfish,Ruvettus,pretiosus
+601072,Lampris guttatus,Opah,Lampris,guttatus
+601084,Scomberesox saurus saurus,Atlantic saury,Scomberesox,saurus saurus
+601164,Sparus aurata,Gilthead seabream,Sparus,aurata
+601198,Stromateus fiatola,Blue butterfish,Stromateus,fiatola
+601278,Trachurus mediterraneus,Mediterranean horse mackerel,Trachurus,mediterraneus
+601279,Trachurus picturatus,Blue jack mackerel,Trachurus,picturatus
+601288,Trichiurus lepturus,Largehead hairtail,Trichiurus,lepturus
+601306,Umbrina cirrosa,Shi drum,Umbrina,cirrosa
+601319,Beryx decadactylus,Alfonsino,Beryx,decadactylus
+601320,Beryx splendens,Splendid alfonsino,Beryx,splendens
+601327,Mullus surmuletus,Surmullet,Mullus,surmuletus
+601334,Osmerus eperlanus,European smelt,Osmerus,eperlanus
+601340,Phycis blennoides,Greater forkbeard,Phycis,blennoides
+601341,Platichthys flesus,European flounder,Platichthys,flesus
+601342,Pleuronectes platessa,European plaice,Pleuronectes,platessa
+601343,Pollachius virens,Saithe,Pollachius,virens
+601348,Scophthalmus maximus,Turbot,Scophthalmus,maximus
+601350,Sardina pilchardus,European pilchard,Sardina,pilchardus
+601352,Sebastes viviparus,Norway redfish,Sebastes,viviparus
+601353,Serranus cabrilla,Comber,Serranus,cabrilla
+601356,Spondyliosoma cantharus,Black seabream,Spondyliosoma,cantharus
+601357,Sprattus sprattus,European sprat,Sprattus,sprattus
+601363,Trachinus draco,Greater weever,Trachinus,draco
+601365,Trachurus trachurus,Atlantic horse mackerel,Trachurus,trachurus
+601366,Chelidonichthys lucerna,Tub gurnard,Chelidonichthys,lucerna
+601367,Trisopterus luscus,Pouting,Trisopterus,luscus
+601370,Zeus faber,John dory,Zeus,faber
+601371,Hippoglossus hippoglossus,Atlantic halibut,Hippoglossus,hippoglossus
+601381,Melanogrammus aeglefinus,Haddock,Melanogrammus,aeglefinus
+601382,Microstomus kitt,Lemon sole,Microstomus,kitt
+601383,Molva dypterygia,Blue ling,Molva,dypterygia
+601520,Clupea pallasii pallasii,Pacific herring,Clupea,pallasii pallasii
+601692,Anthias anthias,Swallowtail seaperch,Anthias,anthias
+601696,Atherina boyeri,Bigscale sand smelt,Atherina,boyeri
+601706,Chromis chromis,Damselfish,Chromis,chromis
+601707,Sciaena umbra,Brown meagre,Sciaena,umbra
+601722,Lepidotrigla cavillone,Largescaled gurnard,Lepidotrigla,cavillone
+601729,Muraena helena,Mediterranean moray,Muraena,helena
+601730,Gymnothorax unicolor,Brown moray,Gymnothorax,unicolor
+601732,Mola mola,Ocean sunfish,Mola,mola
+601734,Mora moro,Common mora,Mora,moro
+601735,Liza aurata,Golden grey mullet,Liza,aurata
+601736,Liza saliens,Leaping mullet,Liza,saliens
+601747,Phycis phycis,Forkbeard,Phycis,phycis
+601749,Diplodus puntazzo,Sharpsnout seabream,Diplodus,puntazzo
+601752,Diplodus annularis,Annular seabream,Diplodus,annularis
+601753,Diplodus sargus sargus,White seabream,Diplodus,sargus sargus
+601754,Diplodus vulgaris,Common twobanded seabream,Diplodus,vulgaris
+601756,Pagrus pagrus,Red porgy,Pagrus,pagrus
+601758,Scorpaena porcus,Black scorpionfish,Scorpaena,porcus
+601759,Scorpaena scrofa,Red scorpionfish,Scorpaena,scrofa
+601773,Trachinotus ovatus,Pompano,Trachinotus,ovatus
+602058,Dipturus batis,Blue skate,Dipturus,batis
+602059,Raja clavata,Thornback ray,Raja,clavata
+602060,Dasyatis pastinaca,Common stingray,Dasyatis,pastinaca
+602066,Acipenser sturio,Sturgeon,Acipenser,sturio
+602420,Gasterosteus aculeatus,Three-spined stickleback,Gasterosteus,aculeatus
+602497,Diplodus cervinus cervinus,Zebra seabream,Diplodus,cervinus cervinus
+602498,Kyphosus sectatrix,Bermuda sea chub,Kyphosus,sectatrix
+602499,Chelon labrosus,Thicklip grey mullet,Chelon,labrosus
+602500,Thalassoma pavo,Ornate wrasse,Thalassoma,pavo
+602501,Anarhichas lupus,Atlantic wolffish,Anarhichas,lupus
+602503,Chimaera monstrosa,Rabbit fish,Chimaera,monstrosa
+602508,Epigonus telescopus,Black cardinal fish,Epigonus,telescopus
+602513,Myxine glutinosa,Hagfish,Myxine,glutinosa
+602530,Petromyzon marinus,Sea lamprey,Petromyzon,marinus
+602534,Alopias superciliosus,Bigeye thresher,Alopias,superciliosus
+602535,Alopias vulpinus,Thresher,Alopias,vulpinus
+602577,Gymnura altavela,Spiny butterfly ray,Gymnura,altavela
+602700,Argentina silus,Greater argentine,Argentina,silus
+603267,Regalecus glesne,King of herrings,Regalecus,glesne
+603810,Anarhichas denticulatus,Northern wolffish,Anarhichas,denticulatus
+603811,Anarhichas minor,Spotted wolffish,Anarhichas,minor
+604239,Hippoglossoides platessoides,American plaice,Hippoglossoides,platessoides
+604326,Leucoraja naevus,Cuckoo ray,Leucoraja,naevus
+604329,Raja montagui,Spotted ray,Raja,montagui
+604330,Myliobatis aquila,Common eagleray,Myliobatis,aquila
+604538,Dentex maroccanus,Morocco dentex,Dentex,maroccanus
+604548,Umbrina canariensis,Canary drum,Umbrina,canariensis
+604552,Raja brachyura,Blonde ray,Raja,brachyura
+604556,Trachyrincus scabrus,Roughsnout grenadier,Trachyrincus,scabrus
+604642,Galeorhinus galeus,Tope shark,Galeorhinus,galeus
+604887,Spicara maena,Blotched picarel,Spicara,maena
+604943,Citharus linguatula,Spotted flounder,Citharus,linguatula
+604964,Hoplostethus mediterraneus mediterraneus,Mediterranean slimehead,Hoplostethus,mediterraneus mediterraneus
+604996,Mustelus mustelus,Smooth-hound,Mustelus,mustelus
+604997,Nezumia aequalis,Common Atlantic grenadier,Nezumia,aequalis
+605003,Pomadasys incisus,Bastard grunt,Pomadasys,incisus
+605007,Pontinus kuhlii,Offshore rockfish,Pontinus,kuhlii
+605008,Promethichthys prometheus,Roudi escolar,Promethichthys,prometheus
+605038,Trigla lyra,Piper gurnard,Trigla,lyra
+605066,Pagrus auriga,Redbanded seabream,Pagrus,auriga
+605071,Alepocephalus rostratus,Rissos smooth-head,Alepocephalus,rostratus
+605081,Trigloporus lastoviza,Streaked gurnard,Trigloporus,lastoviza
+605094,Lophius budegassa,Blackbellied angler,Lophius,budegassa
+605355,Alosa fallax,Twaite shad,Alosa,fallax
+605429,Halobatrachus didactylus,Lusitanian toadfish,Halobatrachus,didactylus
+605492,Raja microocellata,Small-eyed ray,Raja,microocellata
+605938,Mustelus asterias,Starry smooth-hound,Mustelus,asterias
+606422,Rajella lintea,Sailray,Rajella,lintea
+606470,Epinephelus marginatus,Dusky grouper,Epinephelus,marginatus
+607327,Balistes capriscus,Grey triggerfish,Balistes,capriscus
+607614,Leucoraja circularis,Sandy ray,Leucoraja,circularis
+607616,Dipturus oxyrinchus,Longnosed skate,Dipturus,oxyrinchus
+607617,Raja undulata,Undulate ray,Raja,undulata
+607618,Mobula mobular,Devil fish,Mobula,mobular
+607619,Leucoraja fullonica,Shagreen ray,Leucoraja,fullonica
+608092,Parapristipoma octolineatum,African striped grunt,Parapristipoma,octolineatum
+608852,Solea senegalensis,Senegalese sole,Solea,senegalensis
+608991,Spectrunculus grandis,Pudgy cuskeel,Spectrunculus,grandis
+609005,Rhinochimaera atlantica,Straightnose rabbitfish,Rhinochimaera,atlantica
+609256,Amblyraja hyperborea,Arctic skate,Amblyraja,hyperborea
+611820,Abudefduf luridus,Canary damsel,Abudefduf,luridus
+613025,Sparisoma cretense,Old parrotfish,Sparisoma,cretense
+690003,Pandalus montagui,Aesop shrimp,Pandalus,montagui
+690043,Pollicipes pollicipes,Atlantic barnacle,Pollicipes,pollicipes
+690051,Aristeus antennatus,Blue and red shrimp,Aristeus,antennatus
+690053,Mytilus edulis,Blue mussel,Mytilus,edulis
+690059,Illex coindetii,Broadtail shortfin squid,Illex,coindetii
+690070,Melicertus kerathurus,Caramote prawn,Melicertus,kerathurus
+690085,Sepia officinalis,Common cuttlefish,Sepia,officinalis
+690087,Cardium edule,Common edible cockle,Cardium,edule
+690088,Octopus vulgaris,Common octopus,Octopus,vulgaris
+690089,Littorina littorea,Common periwinkle,Littorina,littorea
+690090,Palaemon serratus,Common prawn,Palaemon,serratus
+690091,Crangon crangon,Common shrimp,Crangon,crangon
+690092,Palinurus elephas,Common spiny lobster,Palinurus,elephas
+690109,Parapenaeus longirostris,Deepwater rose shrimp,Parapenaeus,longirostris
+690119,Cancer pagurus,Edible crab,Cancer,pagurus
+690122,Echinus esculentus,European edible sea urchin,Echinus,esculentus
+690123,Ostrea edulis,European flat oyster,Ostrea,edulis
+690124,Todarodes sagittatus,European flying squid,Todarodes,sagittatus
+690125,Homarus gammarus,European lobster,Homarus,gammarus
+690156,Pecten maximus,Great Atlantic scallop,Pecten,maximus
+690158,Carcinus maenas,Green crab,Carcinus,maenas
+690166,Ruditapes decussatus,Grooved carpet shell,Ruditapes,decussatus
+690167,Microcosmus sulcatus,Grooved sea squirt,Microcosmus,sulcatus
+690196,Ruditapes philippinarum,Japanese carpet shell,Ruditapes,philippinarum
+690241,Mytilus galloprovincialis,Mediterranean mussel,Mytilus,galloprovincialis
+690269,Pandalus borealis,Northern prawn,Pandalus,borealis
+690270,Mercenaria mercenaria,Northern quahog,Mercenaria,mercenaria
+690271,Illex illecebrosus,Northern shortfin squid,Illex,illecebrosus
+690273,Nephrops norvegicus,Norway lobster,Nephrops,norvegicus
+690275,Arctica islandica,Ocean quahog,Arctica,islandica
+690283,Crassostrea gigas,Pacific cupped oyster,Crassostrea,gigas
+690305,Palinurus mauritanicus,Pink spiny lobster,Palinurus,mauritanicus
+690309,Venerupis corrugata,Corrugated venus,Tapes,pullastra
+690313,Chionoecetes opilio,Snow crab,Chionoecetes,opilio
+690314,Aequipecten opercularis,Queen scallop,Aequipecten,opercularis
+690337,Mya arenaria,Sand gaper,Mya,arenaria
+690343,Plesiopenaeus edwardsianus,Scarlet shrimp,Plesiopenaeus,edwardsianus
+690387,Maja squinado,Spinous spider crab,Maja,squinado
+690392,Squilla mantis,Spottail mantis squillid,Squilla,mantis
+690399,Lithodes maia,Stone king crab,Lithodes,maia
+690400,Paracentrotus lividus,Stony sea urchin,Paracentrotus,lividus
+690404,Chamelea gallina,Striped venus,Chamelea,gallina
+690420,Haliotis tuberculata,Tuberculate abalone,Haliotis,tuberculata
+690423,Mimachlamys varia,Variegated scallop,Mimachlamys,varia
+690425,Necora puber,Velvet swimcrab,Necora,puber
+690434,Buccinum undatum,Whelk,Buccinum,undatum
+690470,Ommastrephes bartramii,Neon flying squid,Ommastrephes,bartramii
+690595,Loligo forbesii,Veined squid,Loligo,forbesii
+690598,Scyllarides latus,Mediterranean slipper lobster,Scyllarides,latus
+690621,Paralithodes camtschaticus,Red king crab,Paralithodes,camtschaticus
+690631,Spisula ovalis,Venus clam,Spisula,ovalis
+690671,Spisula solida,Surf clam,Spisula,solida
+690675,Tapes rhomboides,Banded carpet shell,Tapes,rhomboides
+690676,Liocarcinus depurator,Blueleg swimcrab,Liocarcinus,depurator
+690678,Glycymeris glycymeris,Dog cockle,Glycymeris,glycymeris
+690680,Palaemon longirostris,Delta prawn,Palaemon,longirostris
+690689,Bolinus brandaris,Purple dye murex,Bolinus,brandaris
+690690,Callista chione,Smooth callista,Callista,chione
+690693,Venus verrucosa,Warty venus,Venus,verrucosa
