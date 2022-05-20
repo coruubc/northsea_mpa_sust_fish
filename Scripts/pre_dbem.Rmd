@@ -1,6 +1,6 @@
 ---
-title: "pre_dbem"
-author: "Sarah Roberts"
+title: "Pre DBEM data analysis for manuscript"
+author: "William W.L. Cheung, Juliano Palacios Abrantes, Sarah Roberts"
 date: "5/4/2022"
 output: html_document
 ---
