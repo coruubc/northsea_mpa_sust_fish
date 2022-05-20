@@ -51,18 +51,18 @@ coords <- read.csv(here("./Data/Lon_Lat_DBEM.txt"),header = F) %>%
 
 # MCP data
 mcp_data <- read.table("/Volumes/Enterprise/Data/northsea_mpa_sust_fish/Raw/C6IPSLtest/600069/600069Catch2020.txt", quote="\"", comment.char="")
-colnames(mcp_data) <- c("index","mcp2010")
+colnames(mcp_data) <- c("index","mcp")
 
 # ABD data
 abd_data <- read.table("/Volumes/Enterprise/Data/northsea_mpa_sust_fish/Raw/C6IPSLtest/600069/600069Abd2020.txt", quote="\"", comment.char="")
-colnames(abd_data) <- c("index","abd2010")
+colnames(abd_data) <- c("index","abd")
 
 # Join both
 
 test_data <-
   mcp_data %>% 
   full_join(abd_data) %>% 
-  gather("var","value",mcp2010:abd2010)
+  gather("var","value",mcp:abd)
 
 
 
@@ -110,55 +110,45 @@ test_data %>%
 ```
 
 
-## Where are the protected areas?
-
-```{r}
-
-# Compare catch between surrounding and open ocean
-# Surrounding should be more, at least in average
-
-mpa_grid %>% 
-  filter(status == "protected") %>% 
-  semi_join(test_data) %>% 
-  View()
-
-
-
-```
-
 
 ```{r check_protected_areas}
-taxon_data %>% 
+
+test_data %>% 
   left_join(mpa_grid) %>% 
-  mutate(mcp2010 = ifelse(is.na(mcp2010),0,mcp2010),
-         status = ifelse(is.na(status),"oppen",status)
+  mutate(value = ifelse(is.na(value),0,value),
+         status = ifelse(is.na(status),"open",status)
          ) %>% 
   filter(status == "protected")
 
-# No protected areas in data. Because MCP == 0?
+
 
 
 ```
 
 ```{r map_me}
 
-mpa_grid %>% 
+map_data <- mpa_grid %>% 
   left_join(coords,
             by = "index") %>% 
-  # left_join(test_data,
-  #           by = "index") %>%
-  mutate(status = ifelse(is.na(status),"oppen",status)) %>%
-  # filter(!is.na(value)) %>%
-  ggplot() +
-  geom_tile(
+  left_join(test_data,
+            by = "index") %>%
+  mutate(status = ifelse(is.na(status),"open",status)) %>% 
+  filter(!is.na(value))
+
+
+World_map <- rnaturalearth::ne_countries(scale = 'large', returnclass = c("sf"))
+
+ggplot() +
+  geom_sf(data = fao_regions, aes()) +
+  geom_sf(data = World_map, aes()) +
+  geom_tile(data = map_data,
     aes(
       x = lon,
       y = lat,
-      fill = status,
-      color = status
+      fill = value,
+      color = value
     )
-  ) + 
-  coord_cartesian()
+  )
 
 
 ```
