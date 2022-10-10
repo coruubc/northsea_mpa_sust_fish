@@ -153,3 +153,48 @@ ggplot() +
 
 ```
 
+
+# Test F075 bug
+
+```{r}
+
+library("tidyverse")
+library("here")
+
+Lon_Lat_DBEM <- read.csv("Data/Lon_Lat_DBEM.txt", header=F)
+colnames(Lon_Lat_DBEM) <- c("index","lon","lat")
+
+grid_mpa <- read_csv("Data/mpa_scenarios/grid_m5point5.csv") %>% 
+  select(index = gridID, zone = zone.x,status,prop)
+
+
+load("Data/dbem_outputs/C6GFDL85F075MPA05/600032Catch.RData")
+
+abd <- as.data.frame(sppabdfnl) 
+colnames(abd) <- seq(1951,2100,1)
+
+abd <- abd %>% 
+  bind_cols(Lon_Lat_DBEM) %>% 
+  gather("year",'value',1:150) %>% 
+  filter(!is.na(value))
+
+
+# Linear value
+abd %>% 
+  left_join(grid_mpa,
+            by = "index") %>% 
+  mutate(status = ifelse(is.na(status),"open",status)) %>% 
+  group_by(year,status) %>% 
+  summarise(m = mean(value)) %>%
+  # View()
+  ggplot() +
+  geom_line(
+    aes(
+      x = as.numeric(year),
+      y = log10(m),
+      color = status
+    )
+  )
+
+```
+
