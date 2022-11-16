@@ -16,6 +16,7 @@ output: html_document
 # For grid estimation and species selection
 library(tidyverse)
 library(sf)
+library(viridis)
 
 # Fix new updates of sf package
 sf::sf_use_s2(use_s2 = FALSE)
@@ -30,12 +31,79 @@ library(here)
 
 # Test method
 
+###
+
+
+```{r}
+# MPA test grid
+grids <- read_csv(here("./Data/mpa_scenarios/grid_m5point5.csv")) %>% 
+  select(lon = coords.x1,
+         lat = coords.x2,
+         prop,
+         status) %>% 
+  mutate(cons_scen = 5) %>% 
+  bind_rows(read_csv(here("./Data/mpa_scenarios/grid_30.csv")) %>% 
+              select(lon = coords.x1,
+                     lat = coords.x2,
+                     prop,
+                     status) %>% 
+              mutate(cons_scen = 30)
+  ) %>% 
+  bind_rows(read_csv(here("./Data/mpa_scenarios/grid_15.csv")) %>% 
+              select(lon = coords.x1,
+                     lat = coords.x2,
+                     prop,
+                     status) %>% 
+              mutate(cons_scen = 15)
+  )
+
+
+
+test <- grids %>% 
+  filter(status == "surrounding") %>% 
+  mutate(bins = cut(prop, breaks = 3))
+
+# Load worlkd map
+World_map <- rnaturalearth::ne_countries(scale = 'large', returnclass = c("sf"))
+
+
+  ggplot() +
+    geom_sf(data = World_map, aes()) +
+    geom_tile(data = subset(test, !is.na(bins)),
+    aes(
+      x = lon,
+      y = lat,
+      fill = bins,
+      color = bins
+    )
+  ) +
+  geom_tile(data = subset(grids, status == "protected"),
+    aes(
+      x = lon,
+      y = lat
+    ),
+    fill = "pink"
+  ) +
+    scale_fill_viridis("Proportion increase", discrete = T) + 
+    scale_color_viridis("Proportion increase",discrete = T) + 
+    theme_bw() +
+    theme(legend.position = "bottom") +
+    facet_wrap(~cons_scen) +
+    coord_sf(xlim = c(-42.5,69),
+             ylim = c(35,90)
+             )
+
+```
+
+
+
+
 Double check the DBEM is doing what we want it to do
 
 ```{r read_data}
 
 # MPA test grid
-grid_30 <- read_csv(here("./Data/mpa_scenarios/grid_15.csv"))
+grid_30 <- read_csv(here("./Data/mpa_scenarios/grid_30.csv"))
 
 mpa_grid <- grid_30 %>% 
   select(index = gridID,status,prop)
