@@ -17,6 +17,7 @@ output: html_document
 library(tidyverse)
 library(sf)
 library(viridis)
+library(wesanderson)
 
 # Fix new updates of sf package
 sf::sf_use_s2(use_s2 = FALSE)
@@ -31,7 +32,9 @@ library(here)
 
 # Test method
 
-###
+# Figure 1
+
+## Option one, all in three plots
 
 
 ```{r}
@@ -55,46 +58,141 @@ grids <- read_csv(here("./Data/mpa_scenarios/grid_m5point5.csv")) %>%
                      prop,
                      status) %>% 
               mutate(cons_scen = 15)
-  )
+  ) %>% 
+  mutate(status = replace_na(status,"no protection"))
 
 
 
-test <- grids %>% 
-  filter(status == "surrounding") %>% 
-  mutate(bins = cut(prop, breaks = 3))
+# test <- grids %>%
+  # filter(status == "surrounding") %>%
+  # mutate(bins = cut(prop, breaks = 3))
 
 # Load worlkd map
 World_map <- rnaturalearth::ne_countries(scale = 'large', returnclass = c("sf"))
+meow_sf <- st_read("../Data/spatial/MEOW/meow_ecos.shp") %>% 
+  filter(REALM %in% c("Temperate Northern Atlantic","Arctic"))
+
+
 
 
   ggplot() +
-    geom_sf(data = World_map, aes()) +
-    geom_tile(data = subset(test, !is.na(bins)),
+    # geom_sf(data = World_map, aes()) +
+    # geom_tile(data = subset(grids, !is.na(bins)),
+    geom_tile(data = grids,
     aes(
       x = lon,
       y = lat,
-      fill = bins,
-      color = bins
-    )
-  ) +
-  geom_tile(data = subset(grids, status == "protected"),
-    aes(
-      x = lon,
-      y = lat
+      fill = status,
+      color = status
     ),
-    fill = "pink"
+    alpha = 0.7
   ) +
-    scale_fill_viridis("Proportion increase", discrete = T) + 
-    scale_color_viridis("Proportion increase",discrete = T) + 
+    geom_sf(dat = meow_sf, aes(), color = "black", fill =NA) +
+    geom_sf(data = World_map, aes(), fill = "grey90") +
+    scale_fill_manual("Conservation status",values = c(
+      "white",
+      wes_palette("Zissou1")[5],
+      "darkblue"
+      # wes_palette("Rushmore1")[3]
+    )
+                      ) +
+    scale_color_manual("Conservation status",values = c(
+      "white",
+      wes_palette("Zissou1")[5],
+      "darkblue"
+      # wes_palette("Rushmore1")[3]
+      
+                                 )
+                      ) +
+    # scale_fill_viridis("Conservation status", discrete = T, alpha = 0.7,option = "D",direction = -1) +
+    # scale_color_viridis("Conservation status",discrete = T, alpha = 0.7,option = "D",direction = -1) +
     theme_bw() +
-    theme(legend.position = "bottom") +
+    labs(x = "Longitude", y = "Latitude") +
+    theme(legend.position = "") +
     facet_wrap(~cons_scen) +
     coord_sf(xlim = c(-42.5,69),
              ylim = c(35,90)
-             )
-
+             ) +
+    ggsave("../Figures/scenarios_a_ch.png",
+           width = 10,
+           height = 5
+           )
 ```
+## Option two, one scenario per plot
 
+
+```{r}
+# MPA test grid
+grids <- read_csv(here("./Data/mpa_scenarios/grid_m5point5.csv")) %>% 
+  select(lon = coords.x1,
+         lat = coords.x2,
+         prop,
+         status) %>% 
+  mutate(cons_scen = 5) %>% 
+  bind_rows(read_csv(here("./Data/mpa_scenarios/grid_30.csv")) %>% 
+              select(lon = coords.x1,
+                     lat = coords.x2,
+                     prop,
+                     status) %>% 
+              mutate(cons_scen = 30)
+  ) %>% 
+  bind_rows(read_csv(here("./Data/mpa_scenarios/grid_15.csv")) %>% 
+              select(lon = coords.x1,
+                     lat = coords.x2,
+                     prop,
+                     status) %>% 
+              mutate(cons_scen = 15)
+  ) %>% 
+  mutate(status = replace_na(status,"no protected"))
+
+
+
+# test <- grids %>%
+  # filter(status == "surrounding") %>%
+  # mutate(bins = cut(prop, breaks = 3))
+
+# Load worlkd map
+World_map <- rnaturalearth::ne_countries(scale = 'large', returnclass = c("sf"))
+meow_sf <- st_read("../Data/spatial/MEOW/meow_ecos.shp") %>% 
+  filter(REALM %in% c("Temperate Northern Atlantic","Arctic"))
+# pal <- "IsleofDogs1"
+
+
+  ggplot() +
+    geom_sf(dat = meow_sf, aes(), color = "black", fill =NA) +
+    geom_sf(data = World_map, aes(), fill = "grey90") +
+  geom_tile(data = grids,
+  aes(
+    x = lon,
+    y = lat,
+    fill = status,
+    color = status
+  )
+  ) +
+    # scale_fill_manual("Conservation status",values = c(wes_palette(pal)[1],
+    #                              wes_palette(pal)[2],
+    #                              wes_palette(pal)[3]
+    #                              )
+    #                   ) +
+    # scale_color_manual("Conservation status",values = c(wes_palette(pal)[1],
+    #                              wes_palette(pal)[2],
+    #                              wes_palette(pal)[3]
+    #                              )
+    #                   ) +
+    scale_fill_viridis("Conservation status", discrete = T, alpha = 0.5, option = "D",direction = -1) +
+    scale_color_viridis("Conservation status",discrete = T, alpha = 0.5, option = "D",direction = -1) +
+    theme_bw() +
+    labs(x = "Longitude", y = "Latitude") +
+    theme(legend.position = "bottom") +
+    facet_grid(status~cons_scen) +
+    coord_sf(xlim = c(-42.5,69),
+             ylim = c(35,90)
+             ) +
+    ggsave("scenarios_b.png",
+           width = 8,
+           height = 8
+           )
+```
 
 
 
@@ -232,28 +330,37 @@ library("here")
 Lon_Lat_DBEM <- read.csv("Data/Lon_Lat_DBEM.txt", header=F)
 colnames(Lon_Lat_DBEM) <- c("index","lon","lat")
 
-grid_mpa <- read_csv("Data/mpa_scenarios/grid_m5point5.csv") %>% 
+grid_mpa <- read_csv(here("./Data/mpa_scenarios/grid_30.txt")) %>% 
   select(index = gridID, zone = zone.x,status,prop)
 
 
-load("Data/dbem_outputs/C6GFDL85F075MPA05/600032Catch.RData")
+grid_mpa <- read_csv(here("./Data/mpa_scenarios/grid_15.csv")) %>% 
+  select(index = gridID, zone = zone.x,status,prop)
+
+
+
+load("~/Desktop/600054Catch.RData")
+
 
 abd <- as.data.frame(sppabdfnl) 
 colnames(abd) <- seq(1951,2100,1)
 
 abd <- abd %>% 
-  bind_cols(Lon_Lat_DBEM) %>% 
+  bind_cols(coords) %>% 
   gather("year",'value',1:150) %>% 
   filter(!is.na(value))
 
 
 # Linear value
-abd %>% 
-  left_join(grid_mpa,
+grid_mpa %>% 
+  left_join(abd,
             by = "index") %>% 
-  mutate(status = ifelse(is.na(status),"open",status)) %>% 
+  # filter(status != "open") %>%
+  # View()
+  # mutate(status = ifelse(is.na(status),"open",status)) %>% 
+  # View()
   group_by(year,status) %>% 
-  summarise(m = mean(value)) %>%
+  summarise(m = mean(value,na.rm=T)) %>%
   # View()
   ggplot() +
   geom_line(
