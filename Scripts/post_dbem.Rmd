@@ -18,6 +18,7 @@ library(tidyverse)
 library(sf)
 library(viridis)
 library(wesanderson)
+library(worms)
 
 # Fix new updates of sf package
 sf::sf_use_s2(use_s2 = FALSE)
@@ -25,12 +26,11 @@ sf::sf_use_s2(use_s2 = FALSE)
 # For collaborative ease
 library(here)
 
-
 ```
 
 
 
-# Test method
+# Results
 
 # Figure 1
 
@@ -243,7 +243,47 @@ ggplot() +
 ```
 
 
-# Test F075 bug
+
+# Table S1
+
+*Can you please get the number of fishes and invertebrates, and create a table that list the species as a supplementary table? Here is the final list of species:* https://drive.google.com/open?id=1xlsMJGGVTIax9GQXoMVOx8EgFC1eNgbU&authuser=wwlcheung%40gmail.com&usp=drive_fs
+
+
+```{r}
+
+
+nea_spplist <- read_csv("../Data/species/nea_spplist.csv")
+final_spplist <- read_csv("../Data/species/final_spplist.csv")
+
+# Get info necessary
+ssplit <- nea_spplist %>% 
+  filter(taxon_key %in% final_spplist$x)
+
+# Cerate Table S1 using worms
+table_s1 <- worms::wormsbynames(ssplit$taxon_name) %>% 
+  mutate(vert_invert = ifelse(phylum == "Chordata","vertebrate","invertebrate")) %>% 
+  select(taxon_name=valid_name,kingdom:genus,vert_invert) %>% 
+  left_join(ssplit,
+            by = "taxon_name") %>% 
+  select(taxon_name,common_name,kingdom:genus.x,vert_invert)
+
+# Write table for paper
+write_csv(table_s1,"../Data/table_s1.csv")
+
+# Estimate numbers for intext
+table_s1 %>% 
+  group_by(vert_invert) %>% 
+  tally()
+   
+
+
+
+```
+
+
+# Bugs
+
+## Test F075 bug
 
 ```{r}
 
