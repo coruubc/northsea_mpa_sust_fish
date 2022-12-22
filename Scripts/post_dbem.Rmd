@@ -34,8 +34,6 @@ library(here)
 
 # Figure 1
 
-## Option one, all in three plots
-
 
 ```{r}
 # MPA test grid
@@ -116,81 +114,6 @@ meow_sf <- st_read("../Data/spatial/MEOW/meow_ecos.shp") %>%
     ggsave("../Figures/scenarios_a_ch.png",
            width = 10,
            height = 5
-           )
-```
-## Option two, one scenario per plot
-
-
-```{r}
-# MPA test grid
-grids <- read_csv(here("./Data/mpa_scenarios/grid_m5point5.csv")) %>% 
-  select(lon = coords.x1,
-         lat = coords.x2,
-         prop,
-         status) %>% 
-  mutate(cons_scen = 5) %>% 
-  bind_rows(read_csv(here("./Data/mpa_scenarios/grid_30.csv")) %>% 
-              select(lon = coords.x1,
-                     lat = coords.x2,
-                     prop,
-                     status) %>% 
-              mutate(cons_scen = 30)
-  ) %>% 
-  bind_rows(read_csv(here("./Data/mpa_scenarios/grid_15.csv")) %>% 
-              select(lon = coords.x1,
-                     lat = coords.x2,
-                     prop,
-                     status) %>% 
-              mutate(cons_scen = 15)
-  ) %>% 
-  mutate(status = replace_na(status,"no protected"))
-
-
-
-# test <- grids %>%
-  # filter(status == "surrounding") %>%
-  # mutate(bins = cut(prop, breaks = 3))
-
-# Load worlkd map
-World_map <- rnaturalearth::ne_countries(scale = 'large', returnclass = c("sf"))
-meow_sf <- st_read("../Data/spatial/MEOW/meow_ecos.shp") %>% 
-  filter(REALM %in% c("Temperate Northern Atlantic","Arctic"))
-# pal <- "IsleofDogs1"
-
-
-  ggplot() +
-    geom_sf(dat = meow_sf, aes(), color = "black", fill =NA) +
-    geom_sf(data = World_map, aes(), fill = "grey90") +
-  geom_tile(data = grids,
-  aes(
-    x = lon,
-    y = lat,
-    fill = status,
-    color = status
-  )
-  ) +
-    # scale_fill_manual("Conservation status",values = c(wes_palette(pal)[1],
-    #                              wes_palette(pal)[2],
-    #                              wes_palette(pal)[3]
-    #                              )
-    #                   ) +
-    # scale_color_manual("Conservation status",values = c(wes_palette(pal)[1],
-    #                              wes_palette(pal)[2],
-    #                              wes_palette(pal)[3]
-    #                              )
-    #                   ) +
-    scale_fill_viridis("Conservation status", discrete = T, alpha = 0.5, option = "D",direction = -1) +
-    scale_color_viridis("Conservation status",discrete = T, alpha = 0.5, option = "D",direction = -1) +
-    theme_bw() +
-    labs(x = "Longitude", y = "Latitude") +
-    theme(legend.position = "bottom") +
-    facet_grid(status~cons_scen) +
-    coord_sf(xlim = c(-42.5,69),
-             ylim = c(35,90)
-             ) +
-    ggsave("scenarios_b.png",
-           width = 8,
-           height = 8
            )
 ```
 
