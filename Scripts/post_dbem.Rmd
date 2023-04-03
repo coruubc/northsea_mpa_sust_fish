@@ -19,6 +19,7 @@ library(sf)
 library(viridis)
 library(wesanderson)
 library(worms)
+library(readr)
 
 # Fix new updates of sf package
 sf::sf_use_s2(use_s2 = FALSE)
@@ -268,7 +269,7 @@ table_s1 <- worms::wormsbynames(ssplit$taxon_name) %>%
   select(taxon_name,common_name,kingdom:genus.x,vert_invert)
 
 # Write table for paper
-write_csv(table_s1,"../Data/table_s1.csv")
+# write_csv(table_s1,"../Data/table_s1.csv")
 
 # Estimate numbers for intext
 table_s1 %>% 
@@ -280,10 +281,68 @@ table_s1 %>%
 
 ```
 
+# Sensitivity analysis
+
+We created 3 different MPA configurations for each conservation scenario and then ran the DBEM for 10 species (Table S1) with different life history characteristics (e.g. pelagics, demersals, bivalves, gastropod, cephalopods, etc.). THe sensitivity analysis was done using the GFDL following SSP 585
+
+1.- Pick species with wide ranging life history characteristics: small pelagic, medium pelagic, large pelagic, small demersal, medium demersal, large demersal, inverts (bivalues/gastropod), cephalopods, sharks/rays (long-lived), a bathydemersal (deep sea). 
+
+## Species selection
+
+```{r species_selection}
+
+# manually select speices for sensitivity analysis
+sens_taxa <- c(600115, # Atlantic bonito
+               601357, # European sprat
+               604329, # spotted ray
+               690273, # Norway lobster
+               600069, # Atlantic cod
+               601381, # Haddock,
+               600898, # Blue shark
+               690088, # common octopus
+               690166, # Grooved carpet shell
+               605094  # Blackbellied angler
+               )
+
+
+# Get spp list table
+sens_spplist <- read_csv("../Data/species/final_spplist.csv") %>% 
+  dplyr::rename(taxon_key = x) %>% 
+  left_join(read_csv("../Data/species/nea_spplist.csv"),
+            by = "taxon_key") %>% 
+  filter(taxon_key %in% sens_taxa)
+
+# Save for reference
+write_csv(sens_spplist, "../Data/species/sens_spplist.csv")
+
+# Save for DBEM
+sens_spplist %>% 
+  select(taxon_key) %>% 
+  write.table(., file="../Data/species/NsSppList19.txt",
+              sep="\t", 
+              col.names = F, 
+              row.names = F)
+
+sens_spplist
+
+```
+
+
+
+
+
+
+
+
+
+
+
 
 # Bugs
 
 ## Test F075 bug
+
+**Fixed**
 
 ```{r}
 
