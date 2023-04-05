@@ -5,12 +5,6 @@ date: "18/05/2022"
 output: html_document
 ---
 
----
-title: "pre_dbem"
-author: "Sarah Roberts"
-date: "5/4/2022"
-output: html_document
----
 
 ```{r}
 # For grid estimation and species selection
@@ -33,7 +27,7 @@ library(here)
 
 # Results
 
-# Figure 1
+## Figure 1
 
 
 ```{r}
@@ -245,7 +239,7 @@ ggplot() +
 
 
 
-# Table S1
+## Table S1
 
 *Can you please get the number of fishes and invertebrates, and create a table that list the species as a supplementary table? Here is the final list of species:* https://drive.google.com/open?id=1xlsMJGGVTIax9GQXoMVOx8EgFC1eNgbU&authuser=wwlcheung%40gmail.com&usp=drive_fs
 
@@ -328,6 +322,90 @@ sens_spplist
 ```
 
 
+## MPA scenarios
+
+```{r}
+
+sen_mpa_grids <- list.files("../Data/mpa_scenarios",full.names = T,pattern = ".csv")
+
+x = sen_mpa_grids[1]
+
+# Make function
+
+my_read <- function(x){
+  
+  if(str_detect(x,"point") == T){
+    sen <- paste0(0,str_sub(x,35,37))
+  }else{
+  sen <- str_sub(x,28,31)
+  }
+  out <- read_csv(x) %>% 
+    mutate(sen = sen)
+  
+  return(out)
+  
+}
+
+# Load data
+all_mpa_grids <- bind_rows(
+  lapply(sen_mpa_grids, my_read)
+) %>% 
+  select(sen,
+         lon = coords.x1,
+         lat = coords.x2,
+         prop,status) %>% 
+  mutate(prop = replace_na(0),
+         status = ifelse(is.na(status),"unprotected",status)
+         )
+
+unique(all_mpa_grids$sen)
+
+
+# Make map
+ggplot() +
+    # geom_sf(data = World_map, aes()) +
+    # geom_tile(data = subset(grids, !is.na(bins)),
+    geom_tile(data = all_mpa_grids,
+    aes(
+      x = lon,
+      y = lat,
+      fill = status,
+      color = status
+    ),
+    alpha = 0.7
+  ) +
+  geom_sf(dat = meow_sf, aes(), color = "black", fill =NA) +
+    geom_sf(data = World_map, aes(), fill = "grey90") +
+    scale_fill_manual("Conservation status",values = c(
+      wes_palette("Zissou1")[5],
+      "darkblue",
+      "white"
+    )
+                      ) +
+    scale_color_manual("Conservation status",values = c(
+      wes_palette("Zissou1")[5],
+      "darkblue",
+      "white"
+      
+                                 )
+                      ) +
+    theme_bw() +
+    labs(x = "Longitude", y = "Latitude") +
+    theme(legend.position = "right",
+          legend.key = element_rect(colour = 'black', fill = 'white', linetype='solid')
+          ) +
+    facet_wrap(~sen) +
+    coord_sf(xlim = c(-42.5,69),
+             ylim = c(35,90)
+             ) +
+  ggsave("../Figures/sens_scenarios.png",
+           width = 10,
+           height = 5
+           )
+
+
+
+```
 
 
 
