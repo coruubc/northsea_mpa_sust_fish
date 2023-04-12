@@ -277,9 +277,14 @@ table_s1 %>%
 
 # Sensitivity analysis
 
-We created 3 different MPA configurations for each conservation scenario and then ran the DBEM for 10 species (Table S1) with different life history characteristics (e.g. pelagics, demersals, bivalves, gastropod, cephalopods, etc.). THe sensitivity analysis was done using the GFDL following SSP 585
+We ran a sensitivity analysis to explore the influence of the random MPA allocation to the biomass projection for each conservation scenario. We created 3 different MPA configurations for each conservation scenario and then ran the DBEM for 10 species (Table S1) with different life history characteristics (e.g. pelagics, demersals, bivalves, gastropod, cephalopods, etc.) using the GFDL following SSP 585.
 
-1.- Pick species with wide ranging life history characteristics: small pelagic, medium pelagic, large pelagic, small demersal, medium demersal, large demersal, inverts (bivalues/gastropod), cephalopods, sharks/rays (long-lived), a bathydemersal (deep sea). 
+To test for the effect of different configurations we first aggregated the yearly biomass per species withing each grid cell status (protected, surrounding and unprotected) and then computed the yearly mean +- 2*sd of the three extra configurations. Finally, we explored how far from the variation the configuration used in the main analysis.
+
+Results from the sensitivity analysis show that most of the runs used for the present analysis are withing the variation of the different configurations. In few cases the projected biomass of the main configuration is beyond the variation. Nevertheless, the projected biomass is quite closed to the variation border which at the same time is quite narrow (e.g., Atlantic bonito and cod for protected cells of the 5% scenario).
+
+
+
 
 ## Species selection
 
@@ -408,12 +413,202 @@ ggplot() +
 ```
 
 
+## Sensitivity Analisys 
+
+
+```{r sens_protocol, eval = F}
+
+# Get scenario list
+scenarios <- list.files("/Users/juliano/Data/northsea_mpa_sust_fish/sens",full.names = T)
+
+# get selected species
+species <- read.csv("../Data/species/sens_spplist.csv") %>% 
+  pull(taxon_key)
+
+# Years of projected data
+years = seq(1951,2100,1)
+
+# For testing
+# rm(final_scen,final_yr,partial_yr,final_spp)
+# j = 1
+# i = 1
+# y = 1
+
+
+sens_fx <- function(specie){
+  print(specie)
+  
+  # Loop trough all scenarios
+  for(i in 1:length(scenarios)){
+
+    Load scenario grids
+      grid_df <- read.csv(paste0("../Data/mpa_scenarios/grid_",str_sub(scenarios[i],62,65),".csv"))
+      grid <- grid_df  %>% 
+        select(V1 = gridID,
+               status
+               ) %>% 
+        mutate(status = ifelse(is.na(status),"unprotected",status))
+      
+    # Loop trough all years
+    for(y in 1:length(years)){
+      
+      # Read data
+      to_read <- paste0(scenarios[i],"/",specie,"/",specie,"Abd",years[y],".txt")
+      partial_yr <- read.table(to_read, quote="\"", comment.char="") %>% 
+          mutate(year = years[y])
+      
+      
+      # Combine year data
+      if(y == 1){
+        final_yr <- partial_yr
+      }else{
+        final_yr <- bind_rows(final_yr,partial_yr)
+      }
+      
+    } # Close years
+      
+      # Aggregate abd by year
+      agg_yr <- final_yr %>% 
+        left_join(grid,
+                  by = "V1") %>% 
+        filter(!is.na(status)) %>% 
+        group_by(status,year) %>%
+        summarise(total_abd = sum(V2,na.rm = T), .groups = "keep") %>% 
+        mutate(specie = specie,
+               scen = str_sub(scenarios[i],59,63),
+               run = paste0("run",str_sub(scenarios[i],64,65))
+               )
+               
+      # Compile all scenario data
+      if(i == 1){
+        final_scen <- agg_yr
+      }else{
+        final_scen <- bind_rows(final_scen,agg_yr)
+      }
+  } # Close scenarios    
+      
+  return(final_scen)
+} # Close function
+
+# sens_fx(specie = species[5]) %>% View()
+
+# scens_df <- bind_rows(
+  # lapply(species,sens_fx)
+# )
+
+# Save dataset for future computation
+ # readr::write_csv(scens_df, "../Data/scensitivity_df.csv")
+
+```
+
+## Double check
+
+```{r}
+
+scens_df <- read_csv("../Data/scensitivity_df.csv") %>% 
+  rename(taxon_key = specie) %>% 
+  left_join(read_csv("../Data/species/nea_spplist.csv"),
+            by = "taxon_key")
+
+
+unique(scens_df$scen)
+unique(scens_df$year)
+unique(scens_df$specie)
+unique(scens_df$run)
+unique(scens_df$status)
+
+
+```
+
+
+## Plot it
+
+### Option for totals
+
+```{r}
+
+ggplot(scens_df) +
+  geom_line(
+    aes(
+      x = year,
+      # y = total_abd/1000000,
+      y = log10(total_abd),
+      color = run,
+      linetype = status
+    )
+  ) +
+  facet_wrap(scen~specie, scales = "free_y",ncol = 10) +
+  theme(legend.position = "top")
+
+```
+
+
+```{r}
+
+# sens_spplist
+
+averages <- scens_df %>% 
+  filter(run != "run") %>% 
+  group_by(taxon_key,common_name,status,scen,year) %>% 
+  summarise(mean = mean(total_abd),
+            sd = sd(total_abd)
+            )
+
+
+ggplot(averages) +
+  geom_line(
+    aes(
+      x = year,
+      y = mean,
+      color = status
+    )
+  ) +
+  geom_ribbon(data = averages,
+              aes(
+                x = year,
+                ymin = mean-(2*sd),
+                ymax = mean+(2*sd),
+                fill = status
+              ),
+              alpha = 0.5
+              ) +
+  geom_point(data = scens_df %>% filter(run == "run"),
+    aes(
+      x = year,
+      y = total_abd
+    ),
+    color = "grey",
+    size = 0.1
+  ) +
+  ylab("Projected biomass") +
+  xlab("Year") +
+  facet_wrap(scen~common_name, scales = "free_y",ncol = 5) +
+  theme(legend.position = "top") +
+  theme_classic()
+
+ggsave("sensitivity_analsyis.png",
+       last_plot(),
+       width = 15,
+       height = 10)
+
+
+```
+
+
+
+### Statistics
+
+
+```{r}
+
+scens_df %>% 
+  group_by(common_name,)
 
 
 
 
 
-
+```
 
 
 # Bugs
