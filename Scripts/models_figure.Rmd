@@ -1,0 +1,172 @@
+---
+title: "Untitled"
+author: "Juliano Palacios"
+date: "2023-11-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+library("tidyverse")
+library("viridis")
+
+```
+
+
+
+```{r}
+
+# Biomass~factor(F/FMSY)*GWL+factor(MPA) + GWL + (1|stock)
+
+# Biomass~factor(F/FMSY)*GWL+factor(MPA) + GWL + (1|stock), where MPA and GWL refers to coverage of no-take MPAs over the Northeast Atlantic and global warming level, respectively while stock identities (stock) are considered random effect. c. Results from the mixed-effect model (Model 4) with no-take MPAs coverage estimated over specific stock range size. 
+
+1.5*1*0.15 + 3
+
+
+gwl_df <- as.data.frame(rep(seq(1.5,4,0.5),4))
+
+read.csv("../Data/table_2.csv") %>% 
+  mutate(gwl = gwl_df)
+  mutate(x_lab = paste(protection_type,protected_area, sep = "_"),
+         b_mod = f_msy*) %>% 
+  View()
+  
+  
+  
+
+  
+```
+
+
+```{r}
+read.csv("./Data/table_2.csv") %>% 
+  mutate(x_lab = paste(protection_type,protected_area, sep = "_")) %>% 
+  # View()
+  ggplot() +
+  geom_bar(
+    aes(
+      x = x_lab,
+      y = mean_value,
+      fill = as.character(protected_area)
+    ),
+    stat = "identity"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45) 
+  )+
+  facet_grid(f_msy~variables, 
+             scales = "free")
+
+```
+
+
+
+```{r}
+
+read_excel("../Data/table_2b.xlsx") %>%
+# read.csv("../Data/table_2.csv") %>% 
+  mutate(x_lab = paste(protection_type,f_msy, sep = "_"),
+         variables = ifelse(variables == "Area protected",paste0(variables," (",protected_area,"%)"),
+                            ifelse(variables == "Global warming level",paste0(variables," (",gwl,"C)"),
+                                   variables)
+         )
+         ) %>% 
+  # filter(variables != "Area protected") %>% 
+  # View()
+  ggplot() +
+  geom_bar(
+    aes(
+      x = as.character(f_msy),
+      y = mean_value,
+      fill = variables
+    ),
+    stat = "identity",
+    position = position_stack(reverse = T)
+  ) +
+  # geom_errorbar(
+  #   aes(
+  #     x = as.character(f_msy),
+  #     ymin = mean_value-sd_value,
+  #     ymax = mean_value+sd_value
+  #   ),
+  # )+
+  labs(
+    x = "Fishing level (F/FMSY)",
+    y = "Biomass Change in B/BMSY (%)"
+  ) +
+  theme(
+    # axis.text.x = element_text(angle = 45) 
+  ) +
+  facet_wrap(~protection_type, 
+             scales = "free") +
+  scale_fill_manual(
+    values = c(
+      RColorBrewer::brewer.pal(9,"PuBu")[5:7],
+      # "darkgreen",
+      RColorBrewer::brewer.pal(9,"Greens")[6],
+      RColorBrewer::brewer.pal(4,"YlOrRd")
+      # inferno(4, alpha = 1, begin = 0, end = 1, direction = 1) # Warming levels
+      
+    )
+  ) +
+  MyFunctions::my_ggtheme_p(
+    leg_pos = "right",
+    ax_tl_s = 12
+  )
+
+```
+
+# Alternative version
+
+
+```{r}
+read.csv("../Data/table_2.csv") %>% 
+  mutate(x_lab = paste(protection_type,f_msy, sep = "_"),
+         variables = ifelse(variables == "Area protected",paste0(variables," (",protected_area,"%)"),
+                            ifelse(variables == "Global warming level",paste0(variables," (",gwl,"C)"),
+                                   variables)
+         )
+         ) %>% 
+  # filter(variables != "Area protected") %>% 
+  # View()
+  ggplot() +
+  geom_bar(
+    aes(
+      x = gwl,
+      y = mean_value,
+      fill = variables
+    ),
+    stat = "identity",
+    position = position_stack(reverse = T)
+  ) +
+  # geom_errorbar(
+  #   aes(
+  #     x = as.character(f_msy),
+  #     ymin = mean_value-sd_value,
+  #     ymax = mean_value+sd_value
+  #   ),
+  # )+
+  labs(
+    x = "Fishing level (F/FMSY)",
+    y = "Biomass Change in B/BMSY (%)"
+  ) +
+  theme(
+    # axis.text.x = element_text(angle = 45) 
+  ) +
+  facet_wrap(~protection_type, 
+             scales = "free") +
+  # scale_fill_manual(
+  #   values = c(
+  #     RColorBrewer::brewer.pal(9,"PuBu")[5:7],
+  #     # "darkgreen",
+  #     RColorBrewer::brewer.pal(9,"Greens")[6],
+  #     RColorBrewer::brewer.pal(4,"YlOrRd")
+  #     # inferno(4, alpha = 1, begin = 0, end = 1, direction = 1) # Warming levels
+  #     
+  #   )
+  # ) +
+  MyFunctions::my_ggtheme_p(
+    leg_pos = "right",
+    ax_tl_s = 12
+  )
+```
