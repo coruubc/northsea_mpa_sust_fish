@@ -99,8 +99,9 @@ read_excel("../Data/table_2b.xlsx",
     # axis.text.x = element_text(angle = 45) 
   ) +
   facet_wrap(~protection_type, 
-             scales = "free") +
-  scale_fill_manual(
+             # scales = "free"
+             ) +
+  scale_fill_manual("Variables",
     values = c(
       RColorBrewer::brewer.pal(9,"PuBu")[5:7],
       # "darkgreen",
