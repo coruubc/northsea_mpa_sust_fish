@@ -123,8 +123,8 @@ catch_ploit <- readxl::read_excel("../Data/table_2.xlsx",
     hjust = 0.5
   ) +
   scale_y_continuous(
-    breaks = seq(-90,20,20),
-    limits = c(-90,20)
+    breaks = seq(-60,15,15),
+    limits = c(-60,15)
   );catch_ploit
 
 
