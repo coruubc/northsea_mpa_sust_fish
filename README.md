@@ -3,7 +3,12 @@
 
 ## The effects of marine protected areas on the sustainabillity of marine fish stocks under climate change
 
-This repository contains the code for the project on the effects of Marine Protected Areas and sustainable fisheries in the north Sea to be submitted as a special issue on *Front. of Mar. Sci.*
+This repository contains the code for the project on the effects of Marine Protected Areas and sustainable fisheries in the north Sea published on the journal *NPJ Sustainabillity*.
+
+Cheung, W. W. L., Palacios-Abrantes, J. and Roberts, S. M., 2024. Projecting contributions of marine protected areas to rebuild fish stocks under climate change. npj Ocean Sustainability, 3 (1), 11.
+
+[![DOI](https://zenodo.org/badge/29789533.svg)](https://www.nature.com/articles/s44183-024-00046-w)
+
 
 # Authors
 
@@ -29,3 +34,4 @@ This repository contains the code for the project on the effects of Marine Prote
   - *pre_dbem.rmd*, this script was used to determine the MPA scenarios, the species to be analyzed and the re-allocation of fishing effort to surrounding protected cells
   - *post_dbem.rmd*, this script contains the post-modelling data analysis and production of project results
 
+_This repository has been archived and is no longer updated. The master branch contains the most updated version_
